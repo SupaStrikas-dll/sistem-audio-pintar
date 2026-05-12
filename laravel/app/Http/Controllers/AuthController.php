@@ -59,16 +59,16 @@ class AuthController extends Controller
     public function prosesDaftar(Request $request)
     {
         $request->validate([
-            'nama'                  => 'required|string|max:255',
-            'emel'                  => 'required|email|unique:users,emel',
-            'kata_laluan'           => 'required|min:6|confirmed',
+            'nama'                 => 'required|string|max:255',
+            'emel'                 => 'required|email|unique:users,emel',
+            'kata_laluan'          => 'required|min:6|confirmed',
         ], [
-            'nama.required'                  => 'Sila masukkan nama.',
-            'emel.required'                  => 'Sila masukkan emel.',
-            'emel.unique'                    => 'Emel ini sudah didaftarkan.',
-            'kata_laluan.required'           => 'Sila masukkan kata laluan.',
-            'kata_laluan.min'                => 'Kata laluan minimum 6 aksara.',
-            'kata_laluan.confirmed'          => 'Pengesahan kata laluan tidak sepadan.',
+            'nama.required'                 => 'Sila masukkan nama.',
+            'emel.required'                 => 'Sila masukkan emel.',
+            'emel.unique'                   => 'Emel ini sudah didaftarkan.',
+            'kata_laluan.required'          => 'Sila masukkan kata laluan.',
+            'kata_laluan.min'               => 'Kata laluan minimum 6 aksara.',
+            'kata_laluan.confirmed'         => 'Pengesahan kata laluan tidak sepadan.',
         ]);
 
         User::create([
