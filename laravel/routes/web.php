@@ -19,11 +19,23 @@ Route::middleware('guest')->group(function () {
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route pengguna
+// Route pengguna — semua dalam satu group
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('pengguna.dashboard');
     })->name('pengguna.dashboard');
+
+    Route::get('/keutamaan', function () {
+        return view('pengguna.borang_keutamaan');
+    })->name('keutamaan.borang');
+
+    Route::post('/keutamaan', function () {
+        // Logic simpan — buat lepas ni
+    })->name('keutamaan.simpan');
+
+    Route::get('/cadangan', function () {
+        return view('pengguna.cadangan');
+    })->name('cadangan.hasil');
 });
 
 // Route admin
