@@ -39,7 +39,7 @@
             @endif
 
             {{-- Borang --}}
-            <form method="POST" action="/daftar">
+            <form method="POST" action="{{ route('prosesDaftar') }}">
                 @csrf
 
                 <div class="mb-4">

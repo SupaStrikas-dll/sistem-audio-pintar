@@ -46,7 +46,7 @@
             @endif
 
             {{-- Borang --}}
-            <form method="POST" action="/login">
+            <form method="POST" action="{{ route('prosesLogin') }}">
                 @csrf
 
                 <div class="mb-4">

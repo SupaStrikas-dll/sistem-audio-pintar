@@ -11,9 +11,9 @@ Route::get('/', function () {
 // Route Authentication
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'halamanLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'prosesLogin']);
+    Route::post('/login', [AuthController::class, 'prosesLogin'])->name('prosesLogin');
     Route::get('/daftar', [AuthController::class, 'halamanDaftar'])->name('daftar');
-    Route::post('/daftar', [AuthController::class, 'prosesDaftar']);
+    Route::post('/daftar', [AuthController::class, 'prosesDaftar'])->name('prosesDaftar');
 });
 
 // Logout
