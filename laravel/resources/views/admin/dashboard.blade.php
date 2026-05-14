@@ -37,25 +37,25 @@
             <p class="text-xs font-semibold text-white/30 px-3 mb-2 uppercase tracking-wider">Utama</p>
 
             <a href="{{ route('admin.dashboard') }}" class="nav-item nav-active">
-                📊 Dashboard
+                 Dashboard
             </a>
             <a href="#" class="nav-item">
-                👥 Pengguna
+                 Pengguna
                 <span class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full">
                     {{ $jumlahPengguna ?? 0 }}
                 </span>
             </a>
             <a href="#" class="nav-item">
-                🎧 Peranti Audio
+                 Peranti Audio
             </a>
             <a href="#" class="nav-item">
-                ✨ Cadangan
+                 Cadangan
             </a>
 
             <p class="text-xs font-semibold text-white/30 px-3 mt-5 mb-2 uppercase tracking-wider">Pengurusan</p>
 
             <a href="#" class="nav-item">
-                ⭐ Ulasan
+                 Ulasan
                 @if(($ulasanBaru ?? 0) > 0)
                     <span class="ml-auto text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
                         {{ $ulasanBaru ?? 0 }}
@@ -63,10 +63,10 @@
                 @endif
             </a>
             <a href="#" class="nav-item">
-                📈 Statistik
+                 Statistik
             </a>
             <a href="#" class="nav-item">
-                ⚙️ Tetapan
+                 Tetapan
             </a>
 
         </nav>
