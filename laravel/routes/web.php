@@ -36,6 +36,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/cadangan', function () {
         return view('pengguna.cadangan');
     })->name('cadangan.hasil');
+
+    // Ulasan
+    Route::get('/ulasan', function () {
+    return view('pengguna.ulasan');
+    })->name('ulasan.index');
+
+    Route::post('/ulasan', function () {
+    // Logic simpan — buat lepas ni
+    })->name('ulasan.simpan');
+
+    Route::delete('/ulasan/{id}', function ($id) {
+    // Logic padam — buat lepas ni
+    })->name('ulasan.padam');
 });
 
 // Route admin
