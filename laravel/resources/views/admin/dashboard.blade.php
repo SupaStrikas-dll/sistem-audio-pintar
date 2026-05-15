@@ -27,7 +27,7 @@
                 <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
                     <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
                 </div>
-                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Cari</span></span>
+                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Pintar</span></span>
             </div>
         </div>
 
@@ -122,7 +122,6 @@
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center text-lg">👥</div>
                     <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+12%</span>
                 </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahPengguna ?? 0 }}</p>
@@ -131,7 +130,6 @@
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center text-lg">🎧</div>
                     <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+5%</span>
                 </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahPeranti ?? 0 }}</p>
@@ -140,7 +138,6 @@
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center text-lg">✨</div>
                     <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+28%</span>
                 </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahCadangan ?? 0 }}</p>
@@ -149,7 +146,6 @@
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-yellow-50 rounded-xl flex items-center justify-center text-lg">⭐</div>
                     <span class="text-xs font-semibold bg-red-50 text-red-500 px-2 py-0.5 rounded-full">-2%</span>
                 </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahUlasan ?? 0 }}</p>
@@ -164,7 +160,6 @@
             {{-- Jadual Peranti Terkini --}}
             <div class="col-span-2 bg-white border border-gray-100 rounded-2xl p-5">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-bold text-gray-700">🎧 Peranti Audio Terkini</h2>
                     <a href="#" class="text-xs text-blue-500 hover:underline">Urus Semua</a>
                 </div>
 
@@ -224,7 +219,7 @@
 
                 {{-- Kategori Popular --}}
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
-                    <h2 class="text-sm font-bold text-gray-700 mb-4">📊 Kategori Popular</h2>
+                    <h2 class="text-sm font-bold text-gray-700 mb-4"> Kategori Popular</h2>
                     <div class="space-y-3">
                         <div>
                             <div class="flex justify-between text-xs mb-1.5">
@@ -267,7 +262,7 @@
 
                 {{-- Aktiviti Terkini --}}
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
-                    <h2 class="text-sm font-bold text-gray-700 mb-4">🕐 Aktiviti Terkini</h2>
+                    <h2 class="text-sm font-bold text-gray-700 mb-4"> Aktiviti Terkini</h2>
                     <div class="space-y-3">
 
                         @forelse($aktivitiTerkini ?? [] as $aktiviti)

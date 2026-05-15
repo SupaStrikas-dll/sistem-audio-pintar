@@ -98,37 +98,31 @@
             <div class="grid md:grid-cols-3 gap-5">
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-xl mb-5">🎯</div>
                     <h3 class="text-sm font-semibold mb-2">Cadangan Tepat</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Sistem kami menganalisis keutamaan anda dan mencadangkan peranti yang paling sesuai berdasarkan bajet dan keperluan.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center text-xl mb-5">⭐</div>
                     <h3 class="text-sm font-semibold mb-2">Ulasan Pengguna</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Baca ulasan dan penilaian daripada pengguna lain sebelum membuat keputusan pembelian anda.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center text-xl mb-5">📊</div>
                     <h3 class="text-sm font-semibold mb-2">Perbandingan Mudah</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Bandingkan pelbagai peranti audio dengan mudah mengikut spesifikasi, harga dan ciri-ciri.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-yellow-50 rounded-xl flex items-center justify-center text-xl mb-5">🔒</div>
                     <h3 class="text-sm font-semibold mb-2">Selamat & Terjamin</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Data peribadi anda dilindungi sepenuhnya dengan sistem keselamatan yang terkini.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-red-50 rounded-xl flex items-center justify-center text-xl mb-5">📱</div>
                     <h3 class="text-sm font-semibold mb-2">Mesra Pengguna</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Antara muka yang bersih dan mudah digunakan oleh semua peringkat pengguna.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <div class="w-11 h-11 bg-indigo-50 rounded-xl flex items-center justify-center text-xl mb-5">📂</div>
                     <h3 class="text-sm font-semibold mb-2">Sejarah Cadangan</h3>
                     <p class="text-xs text-gray-500 leading-relaxed">Simpan dan semak semula sejarah cadangan anda pada bila-bila masa yang dikehendaki.</p>
                 </div>
@@ -189,7 +183,7 @@
 
     {{-- ==================== FOOTER ==================== --}}
     <footer class="bg-white border-t border-gray-100 py-6 px-6 text-center">
-        <p class="text-xs text-gray-400">© {{ date('Y') }} Audio Pintar. Sistem Cadangan Peranti Audio. Hak Cipta Terpelihara.</p>
+        <p class="text-xs text-gray-400">© {{ date('Y') }} Audio Pintar. Sistem  Cadangan  Peranti  Audio. Hak  Cipta   Terpelihara.</p>
     </footer>
 
 </body>

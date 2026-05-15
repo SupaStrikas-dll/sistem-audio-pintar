@@ -18,7 +18,7 @@
                 <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
                 </div>
-                <span class="text-lg font-bold text-gray-800">Audio<span class="text-blue-600">Cari</span></span>
+                <span class="text-lg font-bold text-gray-800">Audio<span class="text-blue-600">Pintar</span></span>
             </a>
         </div>
 
@@ -26,7 +26,6 @@
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
 
             <div class="text-center mb-7">
-                <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">🎵</div>
                 <h1 class="text-xl font-bold text-gray-800">Daftar Akaun Baru</h1>
                 <p class="text-sm text-gray-400 mt-1">Percuma selamanya. Tiada kad kredit diperlukan.</p>
             </div>

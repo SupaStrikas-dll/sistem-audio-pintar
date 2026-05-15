@@ -34,33 +34,33 @@
 
             <a href="{{ route('pengguna.dashboard') }}"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 nav-active">
-                📊 Dashboard
+                Dashboard
             </a>
             <a href="#"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                ✨ Cadangan Baru
+                 Cadangan Baru
             </a>
             <a href="#"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                🕐 Sejarah Cadangan
+                 Sejarah Cadangan
             </a>
             <a href="#"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                ⭐ Ulasan Saya
+                 Ulasan Saya
             </a>
 
             <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
 
             <a href="#"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                👤 Profil Saya
+                 Profil Saya
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
                     class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">
-                    🚪 Log Keluar
+                    Log Keluar
                 </button>
             </form>
         </nav>
@@ -87,7 +87,7 @@
         <div class="flex items-center justify-between mb-7">
             <div>
                 <h1 class="text-lg font-bold text-gray-800">
-                    Selamat Datang, {{ optional(auth()->user())->name ?? 'Tetamu' }}! 👋
+                    Selamat Datang, {{ optional(auth()->user())->name ?? 'Tetamu' }}! 
                 </h1>
                 <p class="text-sm text-gray-400 mt-0.5">
                     {{ now()->locale('ms')->isoFormat('dddd, D MMMM YYYY') }}
@@ -95,7 +95,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <div class="bg-white border border-gray-100 rounded-lg px-4 py-2 text-sm text-gray-500 flex items-center gap-2">
-                    🔔 Notifikasi
+                     Notifikasi
                 </div>
                 <div class="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold uppercase">
                   {{ strtoupper(substr(optional(auth()->user())->name ?? 'TT', 0, 2)) }}
@@ -107,19 +107,16 @@
         <div class="grid grid-cols-3 gap-4 mb-6">
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-4 text-xl">✨</div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahCadangan ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Jumlah Cadangan</p>
             </div>
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center mb-4 text-xl">⭐</div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahUlasan ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Ulasan Ditulis</p>
             </div>
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center mb-4 text-xl">🎧</div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahPerantiDilihat ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Peranti Dilihat</p>
             </div>
@@ -133,7 +130,7 @@
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-sm font-bold text-gray-700 flex items-center gap-2">
-                        ✨ Cadangan Terkini
+                         Cadangan Terkini
                     </h2>
                     <a href="#" class="text-xs text-blue-500 hover:underline">Lihat Semua</a>
                 </div>
@@ -150,7 +147,6 @@
                     </div>
                 @empty
                     <div class="text-center py-8">
-                        <p class="text-3xl mb-3">🎧</p>
                         <p class="text-sm text-gray-400">Belum ada cadangan lagi.</p>
                         <p class="text-xs text-gray-300 mt-1">Mulakan dengan isi borang keutamaan</p>
                     </div>
@@ -158,7 +154,7 @@
 
                 <a href="#"
                    class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
-                    ✨ Dapatkan Cadangan Baru
+                     Dapatkan Cadangan Baru
                 </a>
             </div>
 
@@ -168,7 +164,7 @@
                 {{-- Profil Ringkas --}}
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
                     <h2 class="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2">
-                        👤 Profil Saya
+                         Profil Saya
                     </h2>
                     <div class="space-y-3">
                         <div class="flex items-center justify-between py-2 border-b border-gray-50">
@@ -190,7 +186,7 @@
                     </div>
                     <a href="#"
                        class="mt-4 w-full border border-blue-200 text-blue-600 text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition">
-                        ✏️ Kemaskini Profil
+                         Kemaskini Profil
                     </a>
                 </div>
 
@@ -198,7 +194,7 @@
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-sm font-bold text-gray-700 flex items-center gap-2">
-                            🕐 Sejarah Terkini
+                             Sejarah Terkini
                         </h2>
                         <a href="#" class="text-xs text-blue-500 hover:underline">Lihat Semua</a>
                     </div>

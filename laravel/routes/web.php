@@ -56,4 +56,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+
+    // CRUD Peranti
+    Route::get('/peranti', [App\Http\Controllers\Admin\PerantiController::class, 'index'])->name('admin.peranti');
+    Route::get('/peranti/tambah', [App\Http\Controllers\Admin\PerantiController::class, 'tambah'])->name('admin.peranti.tambah');
+    Route::post('/peranti/simpan', [App\Http\Controllers\Admin\PerantiController::class, 'simpan'])->name('admin.peranti.simpan');
+    Route::get('/peranti/{id}/kemaskini', [App\Http\Controllers\Admin\PerantiController::class, 'kemaskini'])->name('admin.peranti.kemaskini');
+    Route::put('/peranti/{id}/update', [App\Http\Controllers\Admin\PerantiController::class, 'update'])->name('admin.peranti.update');
+    Route::delete('/peranti/{id}/padam', [App\Http\Controllers\Admin\PerantiController::class, 'padam'])->name('admin.peranti.padam');
 });
