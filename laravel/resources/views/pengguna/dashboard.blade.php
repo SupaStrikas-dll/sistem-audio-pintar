@@ -33,28 +33,31 @@
             <p class="text-xs font-semibold text-gray-400 px-3 mb-2 uppercase tracking-wider">Menu Utama</p>
 
             <a href="{{ route('pengguna.dashboard') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 nav-active">
+                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 nav-active">
                 Dashboard
             </a>
-            <a href="#"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                 Cadangan Baru
-            </a>
-            <a href="#"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                 Sejarah Cadangan
-            </a>
-            <a href="#"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                 Ulasan Saya
-            </a>
 
-            <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
+<a href="{{ route('keutamaan.borang') }}"
+   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+   Cadangan Baru
+</a>
 
-            <a href="#"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
-                 Profil Saya
-            </a>
+<a href="{{ route('sejarah.index') }}"
+   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+   Sejarah Cadangan
+</a>
+
+<a href="{{ route('ulasan.index') }}"
+   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+   Ulasan Saya
+</a>
+
+<p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
+
+<a href="{{ route('profil.index') }}"
+   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+   Profil Saya
+</a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -94,9 +97,7 @@
                 </p>
             </div>
             <div class="flex items-center gap-3">
-                <div class="bg-white border border-gray-100 rounded-lg px-4 py-2 text-sm text-gray-500 flex items-center gap-2">
-                     Notifikasi
-                </div>
+
                 <div class="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold uppercase">
                   {{ strtoupper(substr(optional(auth()->user())->name ?? 'TT', 0, 2)) }}
                 </div>
@@ -152,7 +153,7 @@
                     </div>
                 @endforelse
 
-                <a href="#"
+                <a href="{{ route('keutamaan.borang') }}"
                    class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
                      Dapatkan Cadangan Baru
                 </a>

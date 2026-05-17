@@ -57,12 +57,6 @@
     <section class="bg-white py-20 px-6 text-center">
         <div class="max-w-3xl mx-auto">
 
-            {{-- Badge --}}
-            <div class="inline-flex items-center gap-2 bg-blue-50 text-[#4f6ef7] text-xs font-bold px-4 py-2 rounded-full mb-6">
-                <span class="w-2 h-2 bg-[#4f6ef7] rounded-full"></span>
-                Sistem Cadangan Pintar
-            </div>
-
             {{-- Tajuk Utama --}}
             <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-5">
                 Cari Peranti Audio <span class="text-[#4f6ef7]">Terbaik</span> Untuk Anda

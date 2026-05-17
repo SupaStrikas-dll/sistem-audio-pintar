@@ -71,7 +71,7 @@
 
                 <button type="submit"
                     class="w-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-semibold py-3 rounded-xl text-sm transition">
-                    Log Masuk →
+                    Log Masuk 
                 </button>
             </form>
 
@@ -83,7 +83,7 @@
         </div>
 
         <p class="text-center text-xs text-gray-400 mt-5">
-            <a href="{{ route('landing') }}" class="hover:text-blue-500 transition">← Kembali ke laman utama</a>
+            <a href="{{ route('landing') }}" class="hover:text-blue-500 transition">Kembali ke laman utama</a>
         </p>
 
     </div>

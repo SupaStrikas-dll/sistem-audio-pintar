@@ -30,15 +30,15 @@
         </div>
         <nav class="flex-1 py-4 px-3">
             <p class="text-xs font-semibold text-gray-400 px-3 mb-2 uppercase tracking-wider">Menu Utama</p>
-            <a href="{{ route('pengguna.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">📊 Dashboard</a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1" style="background:#eef0fe;color:#4f6ef7;font-weight:600;border-left:3px solid #4f6ef7;">✨ Cadangan Baru</a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">🕐 Sejarah Cadangan</a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">⭐ Ulasan Saya</a>
+            <a href="{{ route('pengguna.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Dashboard</a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1" style="background:#eef0fe;color:#4f6ef7;font-weight:600;border-left:3px solid #4f6ef7;">Cadangan Baru</a>
+            <a href="{{ route('sejarah.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Sejarah Cadangan</a>
+            <a href="{{ route('ulasan.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Ulasan Saya</a>
             <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">👤 Profil Saya</a>
+            <a href="{{ route('profil.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Profil Saya</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">🚪 Log Keluar</button>
+                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">Log Keluar</button>
             </form>
         </nav>
         <div class="px-4 py-4 border-t border-gray-100">
@@ -116,22 +116,18 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <label class="option-card">
                                     <input type="radio" name="jenis" value="Fon Telinga" class="hidden" required>
-                                    <span class="text-xl">🎧</span>
                                     <span class="text-sm">Fon Telinga</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="jenis" value="Speaker" class="hidden">
-                                    <span class="text-xl">🔊</span>
                                     <span class="text-sm">Speaker</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="jenis" value="Mikrofon" class="hidden">
-                                    <span class="text-xl">🎤</span>
                                     <span class="text-sm">Mikrofon</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="jenis" value="Earphone" class="hidden">
-                                    <span class="text-xl">🎵</span>
                                     <span class="text-sm">Earphone</span>
                                 </label>
                             </div>
@@ -158,22 +154,18 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <label class="option-card">
                                     <input type="radio" name="kegunaan" value="Gaming" class="hidden" required>
-                                    <span class="text-xl">🎮</span>
                                     <span class="text-sm">Gaming</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="kegunaan" value="Muzik" class="hidden">
-                                    <span class="text-xl">🎵</span>
                                     <span class="text-sm">Muzik</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="kegunaan" value="Kerja" class="hidden">
-                                    <span class="text-xl">💼</span>
                                     <span class="text-sm">Kerja/Mesyuarat</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="kegunaan" value="Studio" class="hidden">
-                                    <span class="text-xl">🎙️</span>
                                     <span class="text-sm">Studio/Rakaman</span>
                                 </label>
                             </div>
@@ -186,22 +178,18 @@
                             <div class="grid grid-cols-2 gap-3 mb-5">
                                 <label class="option-card">
                                     <input type="radio" name="sambungan" value="Wayar" class="hidden" required>
-                                    <span class="text-xl">🔌</span>
                                     <span class="text-sm">Wayar</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="sambungan" value="Wayarles" class="hidden">
-                                    <span class="text-xl">📡</span>
                                     <span class="text-sm">Tanpa Wayar</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="sambungan" value="Bluetooth" class="hidden">
-                                    <span class="text-xl">🔵</span>
                                     <span class="text-sm">Bluetooth</span>
                                 </label>
                                 <label class="option-card">
                                     <input type="radio" name="sambungan" value="Semua" class="hidden">
-                                    <span class="text-xl">✅</span>
                                     <span class="text-sm">Semua Jenis</span>
                                 </label>
                             </div>
@@ -242,18 +230,18 @@
                         <button type="button" onclick="prevStep()"
                             id="prevBtn"
                             class="text-sm font-semibold text-gray-400 border border-gray-200 px-5 py-2.5 rounded-xl hover:bg-gray-50 transition invisible">
-                            ← Sebelum
+                             Sebelum
                         </button>
                         <span id="stepCount" class="text-xs text-gray-400">Langkah 1 / 3</span>
                         <button type="button" onclick="nextStep()"
                             id="nextBtn"
                             class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition">
-                            Seterusnya →
+                            Seterusnya 
                         </button>
                         <button type="submit"
                             id="submitBtn"
                             class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition hidden">
-                            ✨ Dapatkan Cadangan
+                             Dapatkan Cadangan
                         </button>
                     </div>
 

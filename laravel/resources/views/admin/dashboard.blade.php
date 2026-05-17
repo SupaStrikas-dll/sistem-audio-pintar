@@ -104,13 +104,6 @@
                 </p>
             </div>
             <div class="flex items-center gap-3">
-                <div class="bg-white border border-gray-100 rounded-lg px-4 py-2 text-sm text-gray-500 flex items-center gap-2">
-                    🔔
-                    @if(($ulasanBaru ?? 0) > 0)
-                        <span class="bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">{{ $ulasanBaru }}</span>
-                    @endif
-                    Notifikasi
-                </div>
                 <div class="w-9 h-9 bg-[#4f6ef7] text-white rounded-full flex items-center justify-center text-sm font-bold uppercase">
                     {{ strtoupper(substr(optional(auth()->user())->name ?? 'AD', 0, 2)) }}
                 </div>

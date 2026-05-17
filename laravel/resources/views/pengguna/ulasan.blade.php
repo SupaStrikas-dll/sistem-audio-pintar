@@ -22,20 +22,20 @@
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                     <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
                 </div>
-                <span class="text-sm font-bold">Audio<span class="text-blue-600">Cari</span></span>
+                <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
         </div>
         <nav class="flex-1 py-4 px-3">
             <p class="text-xs font-semibold text-gray-400 px-3 mb-2 uppercase tracking-wider">Menu Utama</p>
-            <a href="{{ route('pengguna.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">📊 Dashboard</a>
-            <a href="{{ route('keutamaan.borang') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">✨ Cadangan Baru</a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">🕐 Sejarah Cadangan</a>
-            <a href="{{ route('ulasan.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1" style="background:#eef0fe;color:#4f6ef7;font-weight:600;border-left:3px solid #4f6ef7;">⭐ Ulasan Saya</a>
+            <a href="{{ route('pengguna.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Dashboard</a>
+            <a href="{{ route('keutamaan.borang') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Cadangan Baru</a>
+            <a href="{{ route('sejarah.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Sejarah Cadangan</a>
+            <a href="{{ route('ulasan.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1" style="background:#eef0fe;color:#4f6ef7;font-weight:600;border-left:3px solid #4f6ef7;">Ulasan Saya</a>
             <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">👤 Profil Saya</a>
+            <a href="{{ route('profil.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Profil Saya</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">🚪 Log Keluar</button>
+                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">Log Keluar</button>
             </form>
         </nav>
         <div class="px-4 py-4 border-t border-gray-100">
@@ -56,7 +56,7 @@
 
         {{-- Topbar --}}
         <div class="mb-6">
-            <h1 class="text-lg font-bold text-gray-800">⭐ Ulasan & Penilaian</h1>
+            <h1 class="text-lg font-bold text-gray-800">Ulasan & Penilaian</h1>
             <p class="text-sm text-gray-400 mt-0.5">Kongsikan pendapat anda tentang peranti audio</p>
         </div>
 
@@ -78,7 +78,7 @@
 
             {{-- ==================== BORANG ULASAN ==================== --}}
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
-                <h2 class="text-sm font-bold text-gray-700 mb-4">✍️ Tulis Ulasan Baru</h2>
+                <h2 class="text-sm font-bold text-gray-700 mb-4">Tulis Ulasan Baru</h2>
 
                 {{-- Pilih Peranti --}}
                 <div class="mb-4">
@@ -141,7 +141,7 @@
 
                     <button type="submit"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3 rounded-xl transition">
-                        Hantar Ulasan →
+                        Hantar Ulasan 
                     </button>
                 </form>
             </div>
@@ -149,7 +149,7 @@
             {{-- ==================== SENARAI ULASAN ==================== --}}
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-sm font-bold text-gray-700">💬 Ulasan Terkini</h2>
+                    <h2 class="text-sm font-bold text-gray-700">Ulasan Terkini</h2>
                     <span class="text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
                         {{ count($ulasan ?? []) }} Ulasan
                     </span>
@@ -196,7 +196,6 @@
                     </div>
                 @empty
                     <div class="text-center py-10">
-                        <p class="text-3xl mb-3">💬</p>
                         <p class="text-sm text-gray-400">Belum ada ulasan lagi.</p>
                         <p class="text-xs text-gray-300 mt-1">Jadilah yang pertama memberi ulasan!</p>
                     </div>
