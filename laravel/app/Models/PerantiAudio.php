@@ -9,8 +9,13 @@ class PerantiAudio extends Model
     protected $table = 'peranti_audio';
 
     protected $fillable = [
-        'nama', 'jenama', 'id_kategori',
-        'harga', 'penerangan', 'imej', 'status'
+        'nama',
+        'jenama',
+        'id_kategori',
+        'harga',
+        'penerangan',
+        'imej',
+        'status'
     ];
 
     public function kategori()
@@ -21,5 +26,10 @@ class PerantiAudio extends Model
     public function ulasan()
     {
         return $this->hasMany(Ulasan::class, 'id_peranti');
+    }
+
+    public function cadangan()
+    {
+        return $this->hasMany(\App\Models\Cadangan::class, 'id_peranti');
     }
 }

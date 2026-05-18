@@ -30,10 +30,10 @@
             <a href="{{ route('admin.dashboard') }}" class="nav-item">Dashboard</a>
             <a href="{{ route('admin.pengguna') }}" class="nav-item">Pengguna</a>
             <a href="{{ route('admin.peranti') }}" class="nav-item nav-active">Peranti Audio</a>
-            <a href="#" class="nav-item">Cadangan</a>
+            <a href="{{ route('admin.cadangan') }}" class="nav-item">Cadangan</a>
             <p class="text-xs font-semibold text-white/30 px-3 mt-4 mb-2 uppercase tracking-wider">Pengurusan</p>
-            <a href="#" class="nav-item">Ulasan</a>
-            <a href="#" class="nav-item">Statistik</a>
+            <a href="{{ route('admin.ulasan') }}" class="nav-item">Ulasan</a>
+            <a href="{{ route('admin.statistik') }}" class="nav-item">Statistik</a>
         </nav>
         <div class="px-4 py-4 border-t border-white/10">
             <div class="flex items-center gap-3">

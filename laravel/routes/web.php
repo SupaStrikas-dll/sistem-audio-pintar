@@ -22,7 +22,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/daftar', [AuthController::class, 'prosesDaftar'])->name('prosesDaftar');
 });
 
-// Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // =====================================================
@@ -35,20 +34,19 @@ Route::middleware('auth')->group(function () {
         return view('pengguna.dashboard');
     })->name('pengguna.dashboard');
 
-    // Borang Keutamaan Audio
+    // Borang Keutamaan
     Route::get('/keutamaan', function () {
         return view('pengguna.borang_keutamaan');
     })->name('keutamaan.borang');
 
-    // Simpan pilihan & jana cadangan
     Route::post('/keutamaan', [CadanganController::class, 'simpanPilihan'])
         ->name('keutamaan.simpan');
 
-    // Hasil cadangan
+    // Hasil Cadangan
     Route::get('/cadangan/{id}', [CadanganController::class, 'hasilCadangan'])
         ->name('cadangan.hasil');
 
-    // Sejarah cadangan
+    // Sejarah Cadangan
     Route::get('/sejarah', function () {
         $sejarah = App\Models\PilihanPengguna::with('cadangan.peranti.kategori')
             ->where('id_pengguna', auth()->id())
@@ -96,7 +94,7 @@ Route::middleware('auth')->group(function () {
         return back()->with('berjaya', 'Ulasan berjaya dipadam!');
     })->name('ulasan.padam');
 
-    // Profil
+    // Profil Pengguna
     Route::get('/profil', function () {
         return view('pengguna.profil');
     })->name('profil.index');
@@ -163,10 +161,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     })->name('admin.dashboard');
 
     // Pengurusan Pengguna
-    Route::get('/pengguna', function () {
-        $pengguna = App\Models\User::where('peranan', 'pengguna')->latest()->paginate(10);
+    Route::get('/pengguna', function (Illuminate\Http\Request $request) {
+        $query = App\Models\User::query();
+        if ($request->cari) {
+            $query->where('nama', 'like', '%' . $request->cari . '%')
+                  ->orWhere('emel', 'like', '%' . $request->cari . '%');
+        }
+        $pengguna = $query->latest()->paginate(10);
         return view('admin.pengguna', compact('pengguna'));
     })->name('admin.pengguna');
+
+    Route::delete('/pengguna/{id}/padam', function ($id) {
+        App\Models\User::findOrFail($id)->delete();
+        return back()->with('berjaya', 'Pengguna berjaya dipadam!');
+    })->name('admin.pengguna.padam');
 
     // CRUD Peranti Audio
     Route::get('/peranti', [App\Http\Controllers\Admin\PerantiController::class, 'index'])
@@ -181,5 +189,73 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         ->name('admin.peranti.update');
     Route::delete('/peranti/{id}/padam', [App\Http\Controllers\Admin\PerantiController::class, 'padam'])
         ->name('admin.peranti.padam');
+
+    // Cadangan
+    Route::get('/cadangan', function () {
+        $cadangan = App\Models\Cadangan::with('pilihan.pengguna', 'peranti')
+            ->latest()->paginate(10);
+        return view('admin.cadangan', compact('cadangan'));
+    })->name('admin.cadangan');
+
+    // Ulasan
+    Route::get('/ulasan', function () {
+        $ulasan = App\Models\Ulasan::with('pengguna', 'peranti')
+            ->latest()->paginate(10);
+        return view('admin.ulasan', compact('ulasan'));
+    })->name('admin.ulasan');
+
+    Route::delete('/ulasan/{id}/padam', function ($id) {
+        App\Models\Ulasan::findOrFail($id)->delete();
+        return back()->with('berjaya', 'Ulasan berjaya dipadam!');
+    })->name('admin.ulasan.padam');
+
+    // Statistik
+    Route::get('/statistik', function () {
+        $jumlahPengguna  = App\Models\User::where('peranan', 'pengguna')->count();
+        $jumlahPeranti   = App\Models\PerantiAudio::count();
+        $jumlahCadangan  = App\Models\Cadangan::count();
+        $jumlahUlasan    = App\Models\Ulasan::count();
+        $perantiPopular  = App\Models\PerantiAudio::withCount('cadangan as jumlah_cadangan')
+            ->orderBy('jumlah_cadangan', 'desc')->take(5)->get();
+        $kategoriPopular = App\Models\Kategori::withCount(['peranti as jumlah' => function ($q) {
+            $q->whereHas('cadangan');
+        }])->orderBy('jumlah', 'desc')->get();
+        return view('admin.statistik', compact(
+            'jumlahPengguna', 'jumlahPeranti',
+            'jumlahCadangan', 'jumlahUlasan',
+            'perantiPopular', 'kategoriPopular'
+        ));
+    })->name('admin.statistik');
+
+    // Tetapan
+    Route::get('/tetapan', function () {
+        return view('admin.tetapan');
+    })->name('admin.tetapan');
+
+    Route::put('/tetapan', function (Illuminate\Http\Request $request) {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'emel' => 'required|email|unique:users,emel,' . auth()->id(),
+        ]);
+        auth()->user()->update([
+            'nama' => $request->nama,
+            'emel' => $request->emel,
+        ]);
+        return back()->with('berjaya', 'Maklumat berjaya dikemaskini!');
+    })->name('admin.tetapan.kemaskini');
+
+    Route::put('/tetapan/kata-laluan', function (Illuminate\Http\Request $request) {
+        $request->validate([
+            'kata_laluan_semasa' => 'required',
+            'kata_laluan_baru'   => 'required|min:6|confirmed',
+        ]);
+        if (!Hash::check($request->kata_laluan_semasa, auth()->user()->kata_laluan)) {
+            return back()->withErrors(['kata_laluan_semasa' => 'Kata laluan semasa tidak betul.']);
+        }
+        auth()->user()->update([
+            'kata_laluan' => Hash::make($request->kata_laluan_baru),
+        ]);
+        return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
+    })->name('admin.tetapan.kataLaluan');
 
 });

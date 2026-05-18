@@ -21,76 +21,67 @@
     {{-- ==================== SIDEBAR ADMIN ==================== --}}
     <aside class="w-52 bg-[#1e1b4b] min-h-screen flex flex-col fixed left-0 top-0 z-40">
 
-        {{-- Logo --}}
-        <div class="px-4 py-5 border-b border-white/10">
-            <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
-                </div>
-                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Pintar</span></span>
+    <div class="px-4 py-5 border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+            </div>
+            <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Cari</span></span>
+        </div>
+    </div>
+
+    <nav class="flex-1 py-4 px-3">
+        <p class="text-xs font-semibold text-white/30 px-3 mb-2 uppercase tracking-wider">Utama</p>
+
+        <a href="{{ route('admin.dashboard') }}" class="nav-item nav-active">
+            Dashboard
+        </a>
+        <a href="{{ route('admin.pengguna') }}" class="nav-item">
+            Pengguna
+            <span class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full">
+                {{ $jumlahPengguna ?? 0 }}
+            </span>
+        </a>
+        <a href="{{ route('admin.peranti') }}" class="nav-item">
+            Peranti Audio
+        </a>
+        <a href="{{ route('admin.cadangan') }}" class="nav-item">
+            Cadangan
+        </a>
+
+        <p class="text-xs font-semibold text-white/30 px-3 mt-5 mb-2 uppercase tracking-wider">Pengurusan</p>
+
+        <a href="{{ route('admin.ulasan') }}" class="nav-item">
+            Ulasan
+        </a>
+        <a href="{{ route('admin.statistik') }}" class="nav-item">
+            Statistik
+        </a>
+        <a href="{{ route('admin.tetapan') }}" class="nav-item">
+            Tetapan
+        </a>
+
+        <form method="POST" action="{{ route('logout') }}" class="mt-2">
+            @csrf
+            <button type="submit" class="w-full text-left nav-item text-red-400 hover:bg-red-500/10">
+                Log Keluar
+            </button>
+        </form>
+    </nav>
+
+    <div class="px-4 py-4 border-t border-white/10">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-[#4f6ef7] rounded-full flex items-center justify-center text-xs font-bold text-white uppercase">
+                {{ strtoupper(substr(optional(auth()->user())->nama ?? 'AD', 0, 2)) }}
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-white">{{ optional(auth()->user())->nama ?? 'Admin' }}</p>
+                <p class="text-xs text-white/40">Pentadbir</p>
             </div>
         </div>
+    </div>
 
-        {{-- Navigasi --}}
-        <nav class="flex-1 py-4 px-3 overflow-y-auto">
-
-            <p class="text-xs font-semibold text-white/30 px-3 mb-2 uppercase tracking-wider">Utama</p>
-
-            <a href="{{ route('admin.dashboard') }}" class="nav-item nav-active">
-                 Dashboard
-            </a>
-            <a href="#" class="nav-item">
-                 Pengguna
-                <span class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full">
-                    {{ $jumlahPengguna ?? 0 }}
-                </span>
-            </a>
-            <a href="#" class="nav-item">
-                 Peranti Audio
-            </a>
-            <a href="#" class="nav-item">
-                 Cadangan
-            </a>
-
-            <p class="text-xs font-semibold text-white/30 px-3 mt-5 mb-2 uppercase tracking-wider">Pengurusan</p>
-
-            <a href="#" class="nav-item">
-                 Ulasan
-                @if(($ulasanBaru ?? 0) > 0)
-                    <span class="ml-auto text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
-                        {{ $ulasanBaru ?? 0 }}
-                    </span>
-                @endif
-            </a>
-            <a href="#" class="nav-item">
-                 Statistik
-            </a>
-            <a href="#" class="nav-item">
-                 Tetapan
-            </a>
-
-        </nav>
-
-        {{-- Info Admin --}}
-        <div class="px-4 py-4 border-t border-white/10">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-[#4f6ef7] rounded-full flex items-center justify-center text-xs font-bold text-white uppercase">
-                    {{ strtoupper(substr(optional(auth()->user())->name ?? 'AD', 0, 2)) }}
-                </div>
-                <div>
-                    <p class="text-xs font-semibold text-white">{{ optional(auth()->user())->name ?? 'Admin' }}</p>
-                    <p class="text-xs text-white/40">Pentadbir</p>
-                </div>
-                <form method="POST" action="{{ route('logout') }}" class="ml-auto">
-                    @csrf
-                    <button type="submit" class="text-white/30 hover:text-white/70 transition" title="Log Keluar">
-                        🚪
-                    </button>
-                </form>
-            </div>
-        </div>
-
-    </aside>
+</aside>
 
     {{-- ==================== KANDUNGAN UTAMA ==================== --}}
     <main class="ml-52 flex-1 p-6">
