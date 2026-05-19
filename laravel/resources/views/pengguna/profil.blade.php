@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya - Sistem Cadangan Audio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>* { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- SIDEBAR --}}
@@ -15,7 +21,9 @@
         <div class="px-5 py-5 border-b border-gray-100">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
@@ -56,15 +64,15 @@
 
         {{-- Mesej --}}
         @if(session('berjaya'))
-            <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
-                {{ session('berjaya') }}
-            </div>
+        <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
+            {{ session('berjaya') }}
+        </div>
         @endif
 
         @if($errors->any())
-            <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
-                {{ $errors->first() }}
-            </div>
+        <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
+            {{ $errors->first() }}
+        </div>
         @endif
 
         <div class="grid grid-cols-3 gap-5">
@@ -110,8 +118,7 @@
                                 name="nama"
                                 value="{{ old('nama', auth()->user()->nama) }}"
                                 class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                                required
-                            >
+                                required>
                         </div>
 
                         <div class="mb-5">
@@ -121,8 +128,7 @@
                                 name="emel"
                                 value="{{ old('emel', auth()->user()->emel) }}"
                                 class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                                required
-                            >
+                                required>
                         </div>
 
                         <button type="submit"
@@ -145,8 +151,7 @@
                                 type="password"
                                 name="kata_laluan_semasa"
                                 placeholder="Masukkan kata laluan semasa"
-                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            >
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                         </div>
 
                         <div class="mb-4">
@@ -155,8 +160,7 @@
                                 type="password"
                                 name="kata_laluan_baru"
                                 placeholder="Minimum 6 aksara"
-                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            >
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                         </div>
 
                         <div class="mb-5">
@@ -165,12 +169,11 @@
                                 type="password"
                                 name="kata_laluan_baru_confirmation"
                                 placeholder="Ulang kata laluan baru"
-                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            >
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
                         </div>
 
                         <button type="submit"
-                            class="bg-gray-800 hover:bg-gray-700 text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition">
+                            class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition">
                             Tukar Kata Laluan
                         </button>
                     </form>
@@ -182,4 +185,5 @@
     </main>
 
 </body>
+
 </html>
