@@ -139,6 +139,11 @@ Route::middleware('auth')->group(function () {
         return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
     })->name('profil.tukarKataLaluan');
 
+    Route::get('/peranti/{id}', function ($id) {
+        $peranti = App\Models\PerantiAudio::with('kategori', 'ulasan.pengguna')
+            ->findOrFail($id);
+        return view('pengguna.detail_peranti', compact('peranti'));
+    })->name('peranti.detail');
 });
 
 // =====================================================
@@ -154,8 +159,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         $jumlahUlasan   = App\Models\Ulasan::count();
         $perantiTerkini = App\Models\PerantiAudio::with('kategori')->latest()->take(5)->get();
         return view('admin.dashboard', compact(
-            'jumlahPengguna', 'jumlahPeranti',
-            'jumlahCadangan', 'jumlahUlasan',
+            'jumlahPengguna',
+            'jumlahPeranti',
+            'jumlahCadangan',
+            'jumlahUlasan',
             'perantiTerkini'
         ));
     })->name('admin.dashboard');
@@ -165,7 +172,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         $query = App\Models\User::query();
         if ($request->cari) {
             $query->where('nama', 'like', '%' . $request->cari . '%')
-                  ->orWhere('emel', 'like', '%' . $request->cari . '%');
+                ->orWhere('emel', 'like', '%' . $request->cari . '%');
         }
         $pengguna = $query->latest()->paginate(10);
         return view('admin.pengguna', compact('pengguna'));
@@ -221,9 +228,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             $q->whereHas('cadangan');
         }])->orderBy('jumlah', 'desc')->get();
         return view('admin.statistik', compact(
-            'jumlahPengguna', 'jumlahPeranti',
-            'jumlahCadangan', 'jumlahUlasan',
-            'perantiPopular', 'kategoriPopular'
+            'jumlahPengguna',
+            'jumlahPeranti',
+            'jumlahCadangan',
+            'jumlahUlasan',
+            'perantiPopular',
+            'kategoriPopular'
         ));
     })->name('admin.statistik');
 
@@ -257,5 +267,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         ]);
         return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
     })->name('admin.tetapan.kataLaluan');
-
 });
