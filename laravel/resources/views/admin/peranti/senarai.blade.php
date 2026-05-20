@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .nav-active { background: #4f6ef7 !important; color: white !important; }
-        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 2px; transition: all 0.15s; }
-        .nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .nav-active {
+            background: #4f6ef7 !important;
+            color: white !important;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 2px;
+            transition: all 0.15s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.85);
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- ==================== SIDEBAR ADMIN ==================== --}}
@@ -20,7 +43,9 @@
         <div class="px-4 py-5 border-b border-white/10">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Cari</span></span>
             </div>
@@ -34,6 +59,13 @@
             <p class="text-xs font-semibold text-white/30 px-3 mt-4 mb-2 uppercase tracking-wider">Pengurusan</p>
             <a href="{{ route('admin.ulasan') }}" class="nav-item">Ulasan</a>
             <a href="{{ route('admin.statistik') }}" class="nav-item">Statistik</a>
+            <a href="{{ route('admin.tetapan') }}" class="nav-item">Tetapan</a>
+            <form method="POST" action="{{ route('logout') }}" class="mt-2">
+                @csrf
+                <button type="submit" class="w-full text-left nav-item" style="color:#f87171;">Log Keluar</button>
+            </form>
+
+
         </nav>
         <div class="px-4 py-4 border-t border-white/10">
             <div class="flex items-center gap-3">
@@ -62,16 +94,16 @@
                 <p class="text-sm text-gray-400 mt-0.5">Urus semua peranti audio dalam sistem</p>
             </div>
             <a href="{{ route('admin.peranti.tambah') }}"
-               class="bg-[#4f6ef7] hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition">
+                class="bg-[#4f6ef7] hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition">
                 + Tambah Peranti
             </a>
         </div>
 
         {{-- Mesej Berjaya --}}
         @if(session('berjaya'))
-            <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
-                {{ session('berjaya') }}
-            </div>
+        <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
+            {{ session('berjaya') }}
+        </div>
         @endif
 
         {{-- Carian & Filter --}}
@@ -81,8 +113,7 @@
                 name="cari"
                 value="{{ request('cari') }}"
                 placeholder="Cari nama peranti atau jenama..."
-                class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-            >
+                class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
             <select name="kategori" class="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 <option value="">Semua Kategori</option>
                 <option value="Fon Telinga" {{ request('kategori') == 'Fon Telinga' ? 'selected' : '' }}>Fon Telinga</option>
@@ -116,48 +147,48 @@
                 </thead>
                 <tbody>
                     @forelse($peranti ?? [] as $index => $p)
-                        <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
-                            <td class="px-5 py-3.5 text-sm text-gray-400">{{ $index + 1 }}</td>
-                            <td class="px-5 py-3.5 text-sm font-semibold text-gray-800">{{ $p->nama }}</td>
-                            <td class="px-5 py-3.5 text-sm text-gray-500">{{ $p->jenama }}</td>
-                            <td class="px-5 py-3.5">
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full
+                    <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
+                        <td class="px-5 py-3.5 text-sm text-gray-400">{{ $index + 1 }}</td>
+                        <td class="px-5 py-3.5 text-sm font-semibold text-gray-800">{{ $p->nama }}</td>
+                        <td class="px-5 py-3.5 text-sm text-gray-500">{{ $p->jenama }}</td>
+                        <td class="px-5 py-3.5">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full
                                     {{ $p->id_kategori == 1 ? 'bg-blue-50 text-blue-600' :
                                        ($p->id_kategori == 2 ? 'bg-purple-50 text-purple-600' :
                                        ($p->id_kategori == 3 ? 'bg-green-50 text-green-600' : 'bg-yellow-50 text-yellow-600')) }}">
-                                    {{ $p->kategori->nama_kategori ?? '-' }}
-                                </span>
-                            </td>
-                            <td class="px-5 py-3.5 text-sm font-semibold text-gray-700">{{ number_format($p->harga, 2) }}</td>
-                            <td class="px-5 py-3.5">
-                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full {{ $p->status ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-500' }}">
-                                    {{ $p->status ? 'Aktif' : 'Tidak Aktif' }}
-                                </span>
-                            </td>
-                            <td class="px-5 py-3.5">
-                                <div class="flex gap-2">
-                                    <a href="{{ route('admin.peranti.kemaskini', $p->id) }}"
-                                       class="text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition">
-                                        Kemaskini
-                                    </a>
-                                    <form method="POST" action="{{ route('admin.peranti.padam', $p->id) }}"
-                                          onsubmit="return confirm('Padam peranti ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="text-xs font-semibold bg-red-50 text-red-500 px-3 py-1.5 rounded-lg hover:bg-red-100 transition">
-                                            Padam
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                                {{ $p->kategori->nama_kategori ?? '-' }}
+                            </span>
+                        </td>
+                        <td class="px-5 py-3.5 text-sm font-semibold text-gray-700">{{ number_format($p->harga, 2) }}</td>
+                        <td class="px-5 py-3.5">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full {{ $p->status ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-500' }}">
+                                {{ $p->status ? 'Aktif' : 'Tidak Aktif' }}
+                            </span>
+                        </td>
+                        <td class="px-5 py-3.5">
+                            <div class="flex gap-2">
+                                <a href="{{ route('admin.peranti.kemaskini', $p->id) }}"
+                                    class="text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition">
+                                    Kemaskini
+                                </a>
+                                <form method="POST" action="{{ route('admin.peranti.padam', $p->id) }}"
+                                    onsubmit="return confirm('Padam peranti ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="text-xs font-semibold bg-red-50 text-red-500 px-3 py-1.5 rounded-lg hover:bg-red-100 transition">
+                                        Padam
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="7" class="text-center py-12 text-sm text-gray-400">
-                                Tiada peranti dijumpai.
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center py-12 text-sm text-gray-400">
+                            Tiada peranti dijumpai.
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -175,4 +206,5 @@
     </main>
 
 </body>
+
 </html>

@@ -71,7 +71,7 @@
             <div class="flex items-center justify-center gap-4 flex-wrap">
                 <a href="{{ route('daftar') }}"
                    class="text-sm font-semibold text-white btn-primary px-7 py-3 rounded-lg">
-                    Mula Sekarang →
+                    Mula Sekarang 
                 </a>
                 <a href="#cara"
                    class="text-sm font-semibold text-[#4f6ef7] border border-[#4f6ef7] px-7 py-3 rounded-lg hover:bg-blue-50 transition">
@@ -170,7 +170,7 @@
             <p class="text-sm text-white/80 mb-8">Daftar sekarang secara percuma dan dapatkan cadangan peranti audio terbaik untuk anda.</p>
             <a href="{{ route('daftar') }}"
                class="inline-block bg-white text-[#4f6ef7] text-sm font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition">
-                Daftar Percuma →
+                Daftar Percuma 
             </a>
         </div>
     </section>

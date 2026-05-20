@@ -21,7 +21,7 @@
                 <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
                     <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
                 </div>
-                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Cari</span></span>
+                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Pintar</span></span>
             </div>
         </div>
         <nav class="flex-1 py-4 px-3">
