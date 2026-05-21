@@ -85,7 +85,7 @@
 
                 <button type="submit"
                     class="w-full bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-semibold py-3 rounded-xl text-sm transition">
-                    Daftar Sekarang →
+                    Daftar Sekarang 
                 </button>
             </form>
 
@@ -97,7 +97,7 @@
         </div>
 
         <p class="text-center text-xs text-gray-400 mt-5">
-            <a href="{{ route('landing') }}" class="hover:text-purple-500 transition">← Kembali ke laman utama</a>
+            <a href="{{ route('landing') }}" class="hover:text-purple-500 transition">Kembali ke laman utama</a>
         </p>
 
     </div>

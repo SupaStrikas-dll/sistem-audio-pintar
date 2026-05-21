@@ -91,7 +91,7 @@
                             <option value="{{ $peranti->id }}"
                                 data-nama="{{ $peranti->nama }}"
                                 data-jenama="{{ $peranti->jenama }}"
-                                data-kategori="{{ $peranti->kategori }}"
+                                data-kategori="{{ $peranti->kategori->nama_kategori ?? '-' }}"
                                 data-harga="{{ number_format($peranti->harga, 2) }}">
                                 {{ $peranti->nama }} — RM {{ number_format($peranti->harga, 2) }}
                             </option>

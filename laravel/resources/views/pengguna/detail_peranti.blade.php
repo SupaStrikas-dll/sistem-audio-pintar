@@ -18,7 +18,7 @@
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                     <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
                 </div>
-                <span class="text-sm font-bold">Audio<span class="text-blue-600">Cari</span></span>
+                <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
         </div>
         <nav class="flex-1 py-4 px-3">
@@ -53,7 +53,7 @@
         {{-- Butang Kembali --}}
         <div class="mb-5">
             <a href="javascript:history.back()"
-               class="text-sm text-gray-500 hover:text-blue-600 transition flex items-center gap-2">
+               class="text-sm text-gray-500 hover:text-blue-600 transition">
                 ← Kembali ke Cadangan
             </a>
         </div>
@@ -63,16 +63,23 @@
             {{-- ==================== MAKLUMAT PERANTI ==================== --}}
             <div class="col-span-1 space-y-4">
 
-                {{-- Kad Utama Peranti --}}
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
-                    <div class="w-full h-40 rounded-xl flex items-center justify-center text-6xl mb-5"
-                         style="background: {{ $peranti->kategori->nama_kategori === 'Speaker' ? '#f3eeff' : ($peranti->kategori->nama_kategori === 'Mikrofon' ? '#edfdf5' : '#eef0fe') }}">
-                        @if($peranti->kategori->nama_kategori === 'Speaker') 🔊
-                        @elseif($peranti->kategori->nama_kategori === 'Mikrofon') 🎤
-                        @elseif($peranti->kategori->nama_kategori === 'Earphone') 🎵
-                        @else 🎧
-                        @endif
-                    </div>
+
+                    {{-- Gambar Peranti --}}
+                    @if($peranti->imej)
+                        <img src="{{ asset($peranti->imej) }}"
+                             alt="{{ $peranti->nama }}"
+                             class="w-full h-44 object-cover rounded-xl mb-5">
+                    @else
+                        <div class="w-full h-44 rounded-xl flex items-center justify-center text-6xl mb-5"
+                             style="background: {{ $peranti->kategori->nama_kategori === 'Speaker' ? '#f3eeff' : ($peranti->kategori->nama_kategori === 'Mikrofon' ? '#edfdf5' : '#eef0fe') }}">
+                            @if($peranti->kategori->nama_kategori === 'Speaker') 🔊
+                            @elseif($peranti->kategori->nama_kategori === 'Mikrofon') 🎤
+                            @elseif($peranti->kategori->nama_kategori === 'Earphone') 🎵
+                            @else 🎧
+                            @endif
+                        </div>
+                    @endif
 
                     <h1 class="text-base font-bold text-gray-800 mb-1">{{ $peranti->nama }}</h1>
                     <p class="text-sm text-gray-400 mb-3">{{ $peranti->jenama }} • {{ $peranti->kategori->nama_kategori }}</p>
@@ -172,7 +179,6 @@
                             <p class="text-sm text-gray-400">Belum ada ulasan untuk peranti ini.</p>
                         </div>
                     @endforelse
-
                 </div>
 
             </div>
@@ -185,7 +191,6 @@
 @if(in_array($peranti->kategori->nama_kategori, ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
 <script>
     const dataFrekuensi = @json(json_decode($peranti->data_frekuensi));
-
     const labelFrekuensi = ['20Hz', '50Hz', '100Hz', '200Hz', '500Hz', '1kHz', '2kHz', '5kHz', '10kHz', '20kHz'];
 
     const ctx = document.getElementById('grafFrekuensi').getContext('2d');
@@ -211,9 +216,7 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    display: false,
-                },
+                legend: { display: false },
                 tooltip: {
                     backgroundColor: '#1e1b4b',
                     titleColor: '#a5b4fc',

@@ -18,12 +18,12 @@ class PerantiController extends Controller
         // Carian
         if ($request->cari) {
             $query->where('nama', 'like', '%' . $request->cari . '%')
-                  ->orWhere('jenama', 'like', '%' . $request->cari . '%');
+                ->orWhere('jenama', 'like', '%' . $request->cari . '%');
         }
 
         // Filter kategori
         if ($request->kategori) {
-            $query->whereHas('kategori', function($q) use ($request) {
+            $query->whereHas('kategori', function ($q) use ($request) {
                 $q->where('nama_kategori', $request->kategori);
             });
         }
@@ -69,7 +69,9 @@ class PerantiController extends Controller
 
         // Upload imej
         if ($request->hasFile('imej')) {
-            $data['imej'] = $request->file('imej')->store('peranti', 'public');
+            $namaFail = time() . '_' . $request->file('imej')->getClientOriginalName();
+            $request->file('imej')->move(public_path('images/peranti'), $namaFail);
+            $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
         PerantiAudio::create($data);
@@ -106,7 +108,9 @@ class PerantiController extends Controller
         if ($request->hasFile('imej')) {
             // Padam imej lama
             if ($peranti->imej) {
-                Storage::disk('public')->delete($peranti->imej);
+                if (file_exists(public_path($peranti->imej))) {
+                    unlink(public_path($peranti->imej));
+                }
             }
             $data['imej'] = $request->file('imej')->store('peranti', 'public');
         }
