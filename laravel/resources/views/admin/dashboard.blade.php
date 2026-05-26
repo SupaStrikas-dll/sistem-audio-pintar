@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 2px; transition: all 0.15s; }
-        .nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
-        .nav-active { background: #4f6ef7 !important; color: white !important; }
-        .card-hover { transition: transform 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 2px;
+            transition: all 0.15s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav-active {
+            background: #4f6ef7 !important;
+            color: white !important;
+        }
+
+        .card-hover {
+            transition: transform 0.2s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- ==================== SIDEBAR ADMIN ==================== --}}
@@ -22,9 +51,11 @@
         <div class="px-4 py-5 border-b border-white/10">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
-                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Cari</span></span>
+                <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Pintar</span></span>
             </div>
         </div>
         <nav class="flex-1 py-4 px-3">
@@ -75,37 +106,21 @@
         <div class="grid grid-cols-4 gap-4 mb-5">
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center text-lg">👥</div>
-                    <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+12%</span>
-                </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahPengguna ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Jumlah Pengguna</p>
             </div>
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center text-lg">🎧</div>
-                    <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+5%</span>
-                </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahPeranti ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Peranti Audio</p>
             </div>
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center text-lg">✨</div>
-                    <span class="text-xs font-semibold bg-green-50 text-green-600 px-2 py-0.5 rounded-full">+28%</span>
-                </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahCadangan ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Jumlah Cadangan</p>
             </div>
 
             <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="w-9 h-9 bg-yellow-50 rounded-xl flex items-center justify-center text-lg">⭐</div>
-                    <span class="text-xs font-semibold bg-red-50 text-red-500 px-2 py-0.5 rounded-full">-2%</span>
-                </div>
                 <p class="text-2xl font-bold text-gray-800">{{ $jumlahUlasan ?? 0 }}</p>
                 <p class="text-xs text-gray-400 mt-1">Jumlah Ulasan</p>
             </div>
@@ -131,25 +146,25 @@
                 </div>
 
                 @forelse($perantiTerkini ?? [] as $p)
-                    <div class="grid grid-cols-4 gap-3 px-3 py-3 border-b border-gray-50 last:border-0 items-center">
-                        <span class="text-sm font-semibold text-gray-700 truncate">{{ $p->nama }}</span>
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 w-fit">
-                            {{ $p->kategori->nama_kategori ?? '-' }}
-                        </span>
-                        <span class="text-sm text-gray-600">RM {{ number_format($p->harga, 0) }}</span>
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full w-fit {{ $p->status ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-500' }}">
-                            {{ $p->status ? 'Aktif' : 'Tidak Aktif' }}
-                        </span>
-                    </div>
+                <div class="grid grid-cols-4 gap-3 px-3 py-3 border-b border-gray-50 last:border-0 items-center">
+                    <span class="text-sm font-semibold text-gray-700 truncate">{{ $p->nama }}</span>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 w-fit">
+                        {{ $p->kategori->nama_kategori ?? '-' }}
+                    </span>
+                    <span class="text-sm text-gray-600">RM {{ number_format($p->harga, 0) }}</span>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full w-fit {{ $p->status ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-500' }}">
+                        {{ $p->status ? 'Aktif' : 'Tidak Aktif' }}
+                    </span>
+                </div>
                 @empty
-                    <div class="text-center py-8">
-                        <p class="text-sm text-gray-400">Belum ada peranti ditambah.</p>
-                        <a href="{{ route('admin.peranti.tambah') }}" class="text-xs text-blue-500 hover:underline mt-1 inline-block">Tambah sekarang</a>
-                    </div>
+                <div class="text-center py-8">
+                    <p class="text-sm text-gray-400">Belum ada peranti ditambah.</p>
+                    <a href="{{ route('admin.peranti.tambah') }}" class="text-xs text-blue-500 hover:underline mt-1 inline-block">Tambah sekarang</a>
+                </div>
                 @endforelse
 
                 <a href="{{ route('admin.peranti.tambah') }}"
-                   class="mt-4 w-full border border-blue-200 text-blue-600 text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition">
+                    class="mt-4 w-full border border-blue-200 text-blue-600 text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition">
                     + Tambah Peranti Baru
                 </a>
             </div>
@@ -205,21 +220,18 @@
                     <h2 class="text-sm font-bold text-gray-700 mb-4">Aktiviti Terkini</h2>
                     <div class="space-y-3">
                         <div class="flex gap-3 items-start pb-3 border-b border-gray-50">
-                            <div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-sm flex-shrink-0">👤</div>
                             <div>
                                 <p class="text-xs font-semibold text-gray-700">Pengguna baru mendaftar</p>
                                 <p class="text-xs text-gray-400">2 minit lalu</p>
                             </div>
                         </div>
                         <div class="flex gap-3 items-start pb-3 border-b border-gray-50">
-                            <div class="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-sm flex-shrink-0">⭐</div>
                             <div>
                                 <p class="text-xs font-semibold text-gray-700">Ulasan baru ditambah</p>
                                 <p class="text-xs text-gray-400">15 minit lalu</p>
                             </div>
                         </div>
                         <div class="flex gap-3 items-start">
-                            <div class="w-8 h-8 bg-purple-50 rounded-full flex items-center justify-center text-sm flex-shrink-0">✨</div>
                             <div>
                                 <p class="text-xs font-semibold text-gray-700">Cadangan baru dijana</p>
                                 <p class="text-xs text-gray-400">1 jam lalu</p>
@@ -234,4 +246,5 @@
     </main>
 
 </body>
+
 </html>

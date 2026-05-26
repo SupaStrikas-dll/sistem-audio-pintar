@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\PerantiAudio;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PerantiController extends Controller
 {
@@ -15,20 +14,19 @@ class PerantiController extends Controller
     {
         $query = PerantiAudio::with('kategori');
 
-        // Carian
         if ($request->cari) {
-            $query->where('nama', 'like', '%' . $request->cari . '%')
-                ->orWhere('jenama', 'like', '%' . $request->cari . '%');
+            $query->where(function($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->cari . '%')
+                  ->orWhere('jenama', 'like', '%' . $request->cari . '%');
+            });
         }
 
-        // Filter kategori
         if ($request->kategori) {
-            $query->whereHas('kategori', function ($q) use ($request) {
+            $query->whereHas('kategori', function($q) use ($request) {
                 $q->where('nama_kategori', $request->kategori);
             });
         }
 
-        // Filter status
         if ($request->status !== null && $request->status !== '') {
             $query->where('status', $request->status);
         }
@@ -74,6 +72,24 @@ class PerantiController extends Controller
             $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
+        // Simpan data frekuensi
+        $data['julat_frekuensi'] = $request->julat_frekuensi;
+
+        if ($request->data_frekuensi) {
+            $data['data_frekuensi'] = $request->data_frekuensi;
+        } else {
+            // Cuba bina dari input individu
+            $nilaiFreq = [];
+            for ($i = 0; $i < 10; $i++) {
+                if ($request->has('freq_' . $i) && $request->input('freq_' . $i) !== '') {
+                    $nilaiFreq[] = (float) $request->input('freq_' . $i);
+                }
+            }
+            if (count($nilaiFreq) === 10) {
+                $data['data_frekuensi'] = json_encode($nilaiFreq);
+            }
+        }
+
         PerantiAudio::create($data);
 
         return redirect()->route('admin.peranti')->with('berjaya', 'Peranti audio berjaya ditambah!');
@@ -82,7 +98,7 @@ class PerantiController extends Controller
     // Form kemaskini
     public function kemaskini($id)
     {
-        $peranti = PerantiAudio::findOrFail($id);
+        $peranti = PerantiAudio::with('kategori')->findOrFail($id);
         $kategori = Kategori::all();
         return view('admin.peranti.form', compact('peranti', 'kategori'));
     }
@@ -106,13 +122,29 @@ class PerantiController extends Controller
 
         // Upload imej baru
         if ($request->hasFile('imej')) {
-            // Padam imej lama
-            if ($peranti->imej) {
-                if (file_exists(public_path($peranti->imej))) {
-                    unlink(public_path($peranti->imej));
+            if ($peranti->imej && file_exists(public_path($peranti->imej))) {
+                unlink(public_path($peranti->imej));
+            }
+            $namaFail = time() . '_' . $request->file('imej')->getClientOriginalName();
+            $request->file('imej')->move(public_path('images/peranti'), $namaFail);
+            $data['imej'] = 'images/peranti/' . $namaFail;
+        }
+
+        // Kemaskini data frekuensi
+        $data['julat_frekuensi'] = $request->julat_frekuensi;
+
+        if ($request->data_frekuensi) {
+            $data['data_frekuensi'] = $request->data_frekuensi;
+        } else {
+            $nilaiFreq = [];
+            for ($i = 0; $i < 10; $i++) {
+                if ($request->has('freq_' . $i) && $request->input('freq_' . $i) !== '') {
+                    $nilaiFreq[] = (float) $request->input('freq_' . $i);
                 }
             }
-            $data['imej'] = $request->file('imej')->store('peranti', 'public');
+            if (count($nilaiFreq) === 10) {
+                $data['data_frekuensi'] = json_encode($nilaiFreq);
+            }
         }
 
         $peranti->update($data);
@@ -125,9 +157,8 @@ class PerantiController extends Controller
     {
         $peranti = PerantiAudio::findOrFail($id);
 
-        // Padam imej
-        if ($peranti->imej) {
-            Storage::disk('public')->delete($peranti->imej);
+        if ($peranti->imej && file_exists(public_path($peranti->imej))) {
+            unlink(public_path($peranti->imej));
         }
 
         $peranti->delete();
