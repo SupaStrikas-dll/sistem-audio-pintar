@@ -15,7 +15,10 @@ class PerantiAudio extends Model
         'harga',
         'penerangan',
         'imej',
-        'status'
+        'status',
+        'skor_purata',
+        'data_frekuensi',
+        'julat_frekuensi'
     ];
 
     public function kategori()

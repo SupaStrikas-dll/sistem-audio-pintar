@@ -17,14 +17,14 @@ class PerantiController extends Controller
         $query = PerantiAudio::with('kategori');
 
         if ($request->cari) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->cari . '%')
-                  ->orWhere('jenama', 'like', '%' . $request->cari . '%');
+                    ->orWhere('jenama', 'like', '%' . $request->cari . '%');
             });
         }
 
         if ($request->kategori) {
-            $query->whereHas('kategori', function($q) use ($request) {
+            $query->whereHas('kategori', function ($q) use ($request) {
                 $q->where('nama_kategori', $request->kategori);
             });
         }
@@ -131,7 +131,7 @@ class PerantiController extends Controller
             'imej.image'           => 'Fail mesti berformat imej.',
             'imej.max'             => 'Saiz imej maksimum 2MB.',
         ]);
-
+        
         $data = $request->only(['nama', 'jenama', 'id_kategori', 'harga', 'penerangan', 'status']);
 
         // Upload imej baru
