@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 
 class PerantiController extends Controller
 {
-    // Senarai semua peranti
+    // =====================================================
+    // SENARAI SEMUA PERANTI
+    // =====================================================
     public function index(Request $request)
     {
         $query = PerantiAudio::with('kategori');
@@ -36,14 +38,18 @@ class PerantiController extends Controller
         return view('admin.peranti.senarai', compact('peranti'));
     }
 
-    // Form tambah
+    // =====================================================
+    // FORM TAMBAH
+    // =====================================================
     public function tambah()
     {
         $kategori = Kategori::all();
         return view('admin.peranti.form', compact('kategori'));
     }
 
-    // Simpan peranti baru
+    // =====================================================
+    // SIMPAN PERANTI BARU
+    // =====================================================
     public function simpan(Request $request)
     {
         $request->validate([
@@ -72,22 +78,19 @@ class PerantiController extends Controller
             $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
-        // Simpan data frekuensi
+        // Simpan julat frekuensi
         $data['julat_frekuensi'] = $request->julat_frekuensi;
 
-        if ($request->data_frekuensi) {
-            $data['data_frekuensi'] = $request->data_frekuensi;
-        } else {
-            // Cuba bina dari input individu
-            $nilaiFreq = [];
-            for ($i = 0; $i < 10; $i++) {
-                if ($request->has('freq_' . $i) && $request->input('freq_' . $i) !== '') {
-                    $nilaiFreq[] = (float) $request->input('freq_' . $i);
-                }
+        // Baca nilai dB terus dari input individu freq_0 hingga freq_9
+        $nilaiFreq = [];
+        for ($i = 0; $i < 10; $i++) {
+            $nilai = $request->input('freq_' . $i);
+            if ($nilai !== null && $nilai !== '') {
+                $nilaiFreq[] = (float) $nilai;
             }
-            if (count($nilaiFreq) === 10) {
-                $data['data_frekuensi'] = json_encode($nilaiFreq);
-            }
+        }
+        if (count($nilaiFreq) > 0) {
+            $data['data_frekuensi'] = json_encode($nilaiFreq);
         }
 
         PerantiAudio::create($data);
@@ -95,7 +98,9 @@ class PerantiController extends Controller
         return redirect()->route('admin.peranti')->with('berjaya', 'Peranti audio berjaya ditambah!');
     }
 
-    // Form kemaskini
+    // =====================================================
+    // FORM KEMASKINI
+    // =====================================================
     public function kemaskini($id)
     {
         $peranti = PerantiAudio::with('kategori')->findOrFail($id);
@@ -103,7 +108,9 @@ class PerantiController extends Controller
         return view('admin.peranti.form', compact('peranti', 'kategori'));
     }
 
-    // Simpan kemaskini
+    // =====================================================
+    // SIMPAN KEMASKINI
+    // =====================================================
     public function update(Request $request, $id)
     {
         $peranti = PerantiAudio::findOrFail($id);
@@ -116,6 +123,13 @@ class PerantiController extends Controller
             'penerangan'  => 'nullable|string',
             'imej'        => 'nullable|image|max:2048',
             'status'      => 'required|in:0,1',
+        ], [
+            'nama.required'        => 'Sila masukkan nama peranti.',
+            'jenama.required'      => 'Sila masukkan jenama.',
+            'id_kategori.required' => 'Sila pilih kategori.',
+            'harga.required'       => 'Sila masukkan harga.',
+            'imej.image'           => 'Fail mesti berformat imej.',
+            'imej.max'             => 'Saiz imej maksimum 2MB.',
         ]);
 
         $data = $request->only(['nama', 'jenama', 'id_kategori', 'harga', 'penerangan', 'status']);
@@ -130,21 +144,19 @@ class PerantiController extends Controller
             $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
-        // Kemaskini data frekuensi
+        // Kemaskini julat frekuensi
         $data['julat_frekuensi'] = $request->julat_frekuensi;
 
-        if ($request->data_frekuensi) {
-            $data['data_frekuensi'] = $request->data_frekuensi;
-        } else {
-            $nilaiFreq = [];
-            for ($i = 0; $i < 10; $i++) {
-                if ($request->has('freq_' . $i) && $request->input('freq_' . $i) !== '') {
-                    $nilaiFreq[] = (float) $request->input('freq_' . $i);
-                }
+        // Baca nilai dB terus dari input individu freq_0 hingga freq_9
+        $nilaiFreq = [];
+        for ($i = 0; $i < 10; $i++) {
+            $nilai = $request->input('freq_' . $i);
+            if ($nilai !== null && $nilai !== '') {
+                $nilaiFreq[] = (float) $nilai;
             }
-            if (count($nilaiFreq) === 10) {
-                $data['data_frekuensi'] = json_encode($nilaiFreq);
-            }
+        }
+        if (count($nilaiFreq) > 0) {
+            $data['data_frekuensi'] = json_encode($nilaiFreq);
         }
 
         $peranti->update($data);
@@ -152,7 +164,9 @@ class PerantiController extends Controller
         return redirect()->route('admin.peranti')->with('berjaya', 'Peranti audio berjaya dikemaskini!');
     }
 
-    // Padam peranti
+    // =====================================================
+    // PADAM PERANTI
+    // =====================================================
     public function padam($id)
     {
         $peranti = PerantiAudio::findOrFail($id);
