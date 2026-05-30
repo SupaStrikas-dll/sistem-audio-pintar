@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .star { font-size: 28px; cursor: pointer; color: #d1d5db; transition: color 0.1s; }
-        .star.active { color: #f59e0b; }
-        .star:hover { color: #f59e0b; }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .star {
+            font-size: 28px;
+            cursor: pointer;
+            color: #d1d5db;
+            transition: color 0.1s;
+        }
+
+        .star.active {
+            color: #f59e0b;
+        }
+
+        .star:hover {
+            color: #f59e0b;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- ==================== SIDEBAR ==================== --}}
@@ -20,7 +36,9 @@
         <div class="px-5 py-5 border-b border-gray-100">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
@@ -62,16 +80,16 @@
 
         {{-- Mesej Berjaya --}}
         @if(session('berjaya'))
-            <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
-                ✅ {{ session('berjaya') }}
-            </div>
+        <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
+            ✅ {{ session('berjaya') }}
+        </div>
         @endif
 
         {{-- Mesej Ralat --}}
         @if($errors->any())
-            <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
-                ⚠️ {{ $errors->first() }}
-            </div>
+        <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
+            ⚠️ {{ $errors->first() }}
+        </div>
         @endif
 
         <div class="grid grid-cols-2 gap-5">
@@ -88,13 +106,13 @@
                         onchange="updatePeranti(this)">
                         <option value="">-- Pilih peranti --</option>
                         @foreach($senaraiPeranti ?? [] as $peranti)
-                            <option value="{{ $peranti->id }}"
-                                data-nama="{{ $peranti->nama }}"
-                                data-jenama="{{ $peranti->jenama }}"
-                                data-kategori="{{ $peranti->kategori->nama_kategori ?? '-' }}"
-                                data-harga="{{ number_format($peranti->harga, 2) }}">
-                                {{ $peranti->nama }} — RM {{ number_format($peranti->harga, 2) }}
-                            </option>
+                        <option value="{{ $peranti->id }}"
+                            data-nama="{{ $peranti->nama }}"
+                            data-jenama="{{ $peranti->jenama }}"
+                            data-kategori="{{ $peranti->kategori->nama_kategori ?? '-' }}"
+                            data-harga="{{ number_format($peranti->harga, 2) }}">
+                            {{ $peranti->nama }} — RM {{ number_format($peranti->harga, 2) }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -135,13 +153,12 @@
                             name="komen"
                             rows="4"
                             placeholder="Tulis pengalaman anda menggunakan peranti ini..."
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none"
-                        >{{ old('komen') }}</textarea>
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200 resize-none">{{ old('komen') }}</textarea>
                     </div>
 
                     <button type="submit"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3 rounded-xl transition">
-                        Hantar Ulasan 
+                        Hantar Ulasan
                     </button>
                 </form>
             </div>
@@ -156,49 +173,52 @@
                 </div>
 
                 @forelse($ulasan ?? [] as $u)
-                    <div class="flex gap-3 py-4 border-b border-gray-50 last:border-0">
+                <div class="flex gap-3 py-4 border-b border-gray-50 last:border-0">
 
-                        {{-- Avatar --}}
-                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold uppercase flex-shrink-0"
-                             style="background:#eef0fe;color:#4f6ef7;">
-                            {{ strtoupper(substr($u->pengguna->nama ?? 'U', 0, 2)) }}
+                    {{-- Avatar --}}
+                    <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold uppercase flex-shrink-0"
+                        style="background:#eef0fe;color:#4f6ef7;">
+                        {{ strtoupper(substr($u->pengguna->nama ?? 'U', 0, 2)) }}
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-gray-700">{{ $u->pengguna->nama ?? 'Pengguna' }}</span>
+                                <span class="text-xs text-gray-300 ml-2">{{ $u->tarikh ? \Carbon\Carbon::parse($u->tarikh)->diffForHumans() : '-' }}</span>
+                            </div>
+                            {{-- Padam (kalau ulasan sendiri) --}}
+                            @if(auth()->id() === $u->id_pengguna)
+                            <form method="POST" action="{{ route('ulasan.padam', $u->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-xs text-red-400 hover:text-red-600 transition">Padam</button>
+                            </form>
+                            @endif
                         </div>
 
-                        <div class="flex-1">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span class="text-xs font-semibold text-gray-700">{{ $u->pengguna->nama ?? 'Pengguna' }}</span>
-                                    <span class="text-xs text-gray-300 ml-2">{{ $u->tarikh ? \Carbon\Carbon::parse($u->tarikh)->diffForHumans() : '-' }}</span>
-                                </div>
-                                {{-- Padam (kalau ulasan sendiri) --}}
-                                @if(auth()->id() === $u->id_pengguna)
-                                    <form method="POST" action="{{ route('ulasan.padam', $u->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-xs text-red-400 hover:text-red-600 transition">Padam</button>
-                                    </form>
-                                @endif
-                            </div>
-
-                            {{-- Bintang --}}
-                            <div class="flex gap-0.5 my-1">
-                                @for($i = 1; $i <= 5; $i++)
-                                    <span class="text-sm {{ $i <= $u->penilaian ? 'text-yellow-400' : 'text-gray-200' }}">★</span>
+                        {{-- Bintang --}}
+                        <div class="flex gap-0.5 my-1">
+                            @for($i = 1; $i <= 5; $i++)
+                                <span class="text-sm {{ $i <= $u->penilaian ? 'text-yellow-400' : 'text-gray-200' }}">★</span>
                                 @endfor
-                            </div>
-
-                            {{-- Nama Peranti --}}
-                            <p class="text-xs text-blue-500 font-semibold mb-1">{{ $u->peranti->nama ?? '-' }}</p>
-
-                            {{-- Komen --}}
-                            <p class="text-xs text-gray-500 leading-relaxed">{{ $u->komen ?? 'Tiada komen.' }}</p>
                         </div>
+
+                        {{-- Nama Peranti --}}
+                        <a href="{{ route('peranti.detail', $u->peranti->id ?? 0) }}"
+                            class="text-xs text-blue-500 font-semibold mb-1 hover:underline">
+                            {{ $u->peranti->nama ?? '-' }}
+                        </a>
+
+                        {{-- Komen --}}
+                        <p class="text-xs text-gray-500 leading-relaxed">{{ $u->komen ?? 'Tiada komen.' }}</p>
                     </div>
+                </div>
                 @empty
-                    <div class="text-center py-10">
-                        <p class="text-sm text-gray-400">Belum ada ulasan lagi.</p>
-                        <p class="text-xs text-gray-300 mt-1">Jadilah yang pertama memberi ulasan!</p>
-                    </div>
+                <div class="text-center py-10">
+                    <p class="text-sm text-gray-400">Belum ada ulasan lagi.</p>
+                    <p class="text-xs text-gray-300 mt-1">Jadilah yang pertama memberi ulasan!</p>
+                </div>
                 @endforelse
 
             </div>
@@ -251,4 +271,5 @@
         }
     }
 </script>
+
 </html>

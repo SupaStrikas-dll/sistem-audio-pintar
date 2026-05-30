@@ -72,10 +72,10 @@
         <div class="px-4 py-4 border-t border-gray-100">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold uppercase">
-                    {{ strtoupper(substr(optional(auth()->user())->name ?? 'TT', 0, 2)) }}
+                    {{ strtoupper(substr(optional(auth()->user())->nama ?? 'TT', 0, 2)) }}
                 </div>
                 <div>
-                    <p class="text-xs font-semibold text-gray-700">{{ optional(auth()->user())->name ?? 'Tetamu' }}</p>
+                    <p class="text-xs font-semibold text-gray-700">{{ optional(auth()->user())->nama ?? 'Tetamu' }}</p>
                     <p class="text-xs text-gray-400">Pengguna</p>
                 </div>
             </div>
@@ -90,7 +90,7 @@
         <div class="flex items-center justify-between mb-7">
             <div>
                 <h1 class="text-lg font-bold text-gray-800">
-                    Selamat Datang, {{ optional(auth()->user())->name ?? 'Tetamu' }}! 
+                    Selamat Datang, {{ optional(auth()->user())->nama ?? 'Tetamu' }}! 
                 </h1>
                 <p class="text-sm text-gray-400 mt-0.5">
                     {{ now()->locale('ms')->isoFormat('dddd, D MMMM YYYY') }}
@@ -99,7 +99,7 @@
             <div class="flex items-center gap-3">
 
                 <div class="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold uppercase">
-                  {{ strtoupper(substr(optional(auth()->user())->name ?? 'TT', 0, 2)) }}
+                  {{ strtoupper(substr(optional(auth()->user())->nama ?? 'TT', 0, 2)) }}
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between py-2 border-b border-gray-50">
                             <span class="text-xs text-gray-400">Nama</span>
-                            <span class="text-xs font-semibold text-gray-700">{{ optional(auth()->user())->name ?? '-' }}</span>
+                            <span class="text-xs font-semibold text-gray-700">{{ optional(auth()->user())->nama ?? '-' }}</span>
                         </div>
                         <div class="flex items-center justify-between py-2 border-b border-gray-50">
                             <span class="text-xs text-gray-400">Emel</span>

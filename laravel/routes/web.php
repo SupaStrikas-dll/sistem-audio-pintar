@@ -31,7 +31,37 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('pengguna.dashboard');
+        $userId = auth()->id();
+
+        $jumlahCadangan = App\Models\Cadangan::whereHas('pilihan', function($q) use ($userId) {
+            $q->where('id_pengguna', $userId);
+        })->count();
+
+        $jumlahUlasan = App\Models\Ulasan::where('id_pengguna', $userId)->count();
+
+        $jumlahPerantiDilihat = App\Models\PilihanPengguna::where('id_pengguna', $userId)->count();
+
+        $cadanganTerkini = App\Models\Cadangan::with('peranti.kategori')
+            ->whereHas('pilihan', function($q) use ($userId) {
+                $q->where('id_pengguna', $userId);
+            })
+            ->orderBy('skor_padanan', 'desc')
+            ->take(3)
+            ->get();
+
+        $sejarahTerkini = App\Models\PilihanPengguna::with('cadangan')
+            ->where('id_pengguna', $userId)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('pengguna.dashboard', compact(
+            'jumlahCadangan',
+            'jumlahUlasan',
+            'jumlahPerantiDilihat',
+            'cadanganTerkini',
+            'sejarahTerkini'
+        ));
     })->name('pengguna.dashboard');
 
     // Borang Keutamaan
@@ -60,7 +90,7 @@ Route::middleware('auth')->group(function () {
         $ulasan = App\Models\Ulasan::with('peranti', 'pengguna')
             ->latest()
             ->get();
-        $senaraiPeranti = App\Models\PerantiAudio::where('status', 1)->get();
+        $senaraiPeranti = App\Models\PerantiAudio::with('kategori')->get();
         return view('pengguna.ulasan', compact('ulasan', 'senaraiPeranti'));
     })->name('ulasan.index');
 
@@ -83,6 +113,13 @@ Route::middleware('auth')->group(function () {
             'tarikh'      => now(),
         ]);
 
+        // Kemaskini skor purata peranti
+        $peranti = App\Models\PerantiAudio::find($request->id_peranti);
+        if ($peranti) {
+            $skorPurata = App\Models\Ulasan::where('id_peranti', $request->id_peranti)->avg('penilaian');
+            $peranti->update(['skor_purata' => round($skorPurata, 2)]);
+        }
+
         return back()->with('berjaya', 'Ulasan berjaya dihantar!');
     })->name('ulasan.simpan');
 
@@ -90,7 +127,17 @@ Route::middleware('auth')->group(function () {
         $ulasan = App\Models\Ulasan::where('id', $id)
             ->where('id_pengguna', auth()->id())
             ->firstOrFail();
+
+        $idPeranti = $ulasan->id_peranti;
         $ulasan->delete();
+
+        // Kemaskini semula skor purata
+        $peranti = App\Models\PerantiAudio::find($idPeranti);
+        if ($peranti) {
+            $skorPurata = App\Models\Ulasan::where('id_peranti', $idPeranti)->avg('penilaian');
+            $peranti->update(['skor_purata' => round($skorPurata ?? 0, 2)]);
+        }
+
         return back()->with('berjaya', 'Ulasan berjaya dipadam!');
     })->name('ulasan.padam');
 
@@ -139,11 +186,13 @@ Route::middleware('auth')->group(function () {
         return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
     })->name('profil.tukarKataLaluan');
 
+    // Detail Peranti
     Route::get('/peranti/{id}', function ($id) {
         $peranti = App\Models\PerantiAudio::with('kategori', 'ulasan.pengguna')
             ->findOrFail($id);
         return view('pengguna.detail_peranti', compact('peranti'));
     })->name('peranti.detail');
+
 });
 
 // =====================================================
@@ -267,4 +316,5 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         ]);
         return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
     })->name('admin.tetapan.kataLaluan');
+
 });
