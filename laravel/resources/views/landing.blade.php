@@ -8,12 +8,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Plus Jakarta Sans', sans-serif; }
+
         .gradient-hero { background: linear-gradient(135deg, #4f6ef7 0%, #7c3aed 100%); }
         .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(79, 110, 247, 0.12); }
         .btn-primary { background: #4f6ef7; transition: background 0.2s ease; }
         .btn-primary:hover { background: #3d5ce3; }
         html { scroll-behavior: smooth; }
+
+        /* Hero background image */
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Overlay gelap pada hero */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 30, 0.65);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Badge glass effect */
+        .badge-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Scroll indicator */
+        .scroll-bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
     </style>
 </head>
 <body class="bg-[#f8f9ff] text-[#1a1a2e]">
@@ -22,7 +62,6 @@
     <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            {{-- Logo --}}
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 gradient-hero rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
@@ -30,7 +69,6 @@
                 <span class="text-base font-bold">Audio<span class="text-[#4f6ef7]">Pintar</span></span>
             </div>
 
-            {{-- Link Navigasi --}}
             <div class="hidden md:flex items-center gap-8">
                 <a href="#" class="text-sm text-gray-500 font-medium hover:text-[#4f6ef7] transition">Laman Utama</a>
                 <a href="#ciri" class="text-sm text-gray-500 font-medium hover:text-[#4f6ef7] transition">Ciri-Ciri</a>
@@ -38,7 +76,6 @@
                 <a href="#" class="text-sm text-gray-500 font-medium hover:text-[#4f6ef7] transition">Tentang Kami</a>
             </div>
 
-            {{-- Butang --}}
             <div class="flex items-center gap-3">
                 <a href="{{ route('login') }}"
                    class="text-sm font-semibold text-[#4f6ef7] border border-[#4f6ef7] px-5 py-2 rounded-lg hover:bg-blue-50 transition">
@@ -54,16 +91,16 @@
     </nav>
 
     {{-- ==================== HERO ==================== --}}
-    <section class="bg-white py-20 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
+    <section class="hero-bg py-32 px-6 text-center">
+        <div class="hero-content max-w-3xl mx-auto">
 
-            {{-- Tajuk Utama --}}
-            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-5">
-                Cari Peranti Audio <span class="text-[#4f6ef7]">Terbaik</span> Untuk Anda
+            {{-- Tajuk --}}
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-5 text-white">
+                Cari Peranti Audio <span class="text-blue-400">Terbaik</span> Untuk Anda
             </h1>
 
             {{-- Penerangan --}}
-            <p class="text-gray-500 text-base leading-relaxed mb-8 max-w-lg mx-auto">
+            <p class="text-white/70 text-base leading-relaxed mb-8 max-w-lg mx-auto">
                 Jawab beberapa soalan mudah dan sistem kami akan mencadangkan peranti audio yang paling sesuai dengan keperluan dan bajet anda.
             </p>
 
@@ -74,7 +111,7 @@
                     Mula Sekarang 
                 </a>
                 <a href="#cara"
-                   class="text-sm font-semibold text-[#4f6ef7] border border-[#4f6ef7] px-7 py-3 rounded-lg hover:bg-blue-50 transition">
+                   class="text-sm font-semibold text-white border border-white/30 px-7 py-3 rounded-lg hover:bg-white/10 transition">
                     Ketahui Lebih Lanjut
                 </a>
             </div>
@@ -82,12 +119,15 @@
         </div>
     </section>
 
+    
+
     {{-- ==================== CIRI-CIRI ==================== --}}
     <section id="ciri" class="py-20 px-6 bg-[#f8f9ff]">
         <div class="max-w-5xl mx-auto">
 
             <p class="text-xs font-bold text-[#4f6ef7] text-center tracking-widest uppercase mb-3">Ciri-Ciri Utama</p>
             <h2 class="text-2xl font-bold text-center mb-2">Kenapa Pilih Audio Pintar?</h2>
+            <p class="text-sm text-gray-500 text-center mb-12">Platform terbaik untuk mencari peranti audio yang sesuai dengan anda</p>
 
             <div class="grid md:grid-cols-3 gap-5">
 
@@ -102,8 +142,8 @@
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
-                    <h3 class="text-sm font-semibold mb-2">Perbandingan Mudah</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Bandingkan pelbagai peranti audio dengan mudah mengikut spesifikasi, harga dan ciri-ciri.</p>
+                    <h3 class="text-sm font-semibold mb-2">Graf Frekuensi</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Lihat graf tindak balas frekuensi untuk memahami kualiti bunyi setiap peranti dengan lebih mendalam.</p>
                 </div>
 
                 <div class="bg-white border border-gray-100 rounded-2xl p-6 card-hover">
@@ -164,7 +204,7 @@
     </section>
 
     {{-- ==================== CTA ==================== --}}
-    <section class="px-6 pb-20">
+    <section class="px-6 pb-20 pt-10 bg-[#f8f9ff]">
         <div class="max-w-5xl mx-auto gradient-hero rounded-3xl py-14 px-8 text-center">
             <h2 class="text-2xl font-bold text-white mb-3">Sedia Untuk Mula?</h2>
             <p class="text-sm text-white/80 mb-8">Daftar sekarang secara percuma dan dapatkan cadangan peranti audio terbaik untuk anda.</p>
@@ -177,7 +217,7 @@
 
     {{-- ==================== FOOTER ==================== --}}
     <footer class="bg-white border-t border-gray-100 py-6 px-6 text-center">
-        <p class="text-xs text-gray-400">© {{ date('Y') }} Audio Pintar. Sistem  Cadangan  Peranti  Audio. Hak  Cipta   Terpelihara.</p>
+        <p class="text-xs text-gray-400">© {{ date('Y') }} Audio Pintar. Sistem Cadangan Peranti Audio. Hak Cipta Terpelihara.</p>
     </footer>
 
 </body>

@@ -33,14 +33,14 @@
             {{-- Mesej Berjaya --}}
             @if(session('berjaya'))
                 <div class="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-5">
-                    ✅ {{ session('berjaya') }}
+                     {{ session('berjaya') }}
                 </div>
             @endif
 
             {{-- Mesej Ralat --}}
             @if($errors->any())
                 <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
-                    ⚠️ {{ $errors->first() }}
+                     {{ $errors->first() }}
                 </div>
             @endif
 

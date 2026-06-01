@@ -97,9 +97,6 @@
                     {{ now()->locale('ms')->isoFormat('dddd, D MMMM YYYY') }}
                 </p>
             </div>
-            <div class="w-9 h-9 bg-[#4f6ef7] text-white rounded-full flex items-center justify-center text-sm font-bold uppercase">
-                {{ strtoupper(substr(optional(auth()->user())->nama ?? 'AD', 0, 2)) }}
-            </div>
         </div>
 
         {{-- ==================== KAD STATISTIK ==================== --}}

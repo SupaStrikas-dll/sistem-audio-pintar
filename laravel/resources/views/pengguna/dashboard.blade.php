@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .nav-active { background: #eef0fe; color: #4f6ef7; border-left: 3px solid #4f6ef7; font-weight: 600; }
-        .card-hover { transition: transform 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .nav-active {
+            background: #eef0fe;
+            color: #4f6ef7;
+            border-left: 3px solid #4f6ef7;
+            font-weight: 600;
+        }
+
+        .card-hover {
+            transition: transform 0.2s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- ==================== SIDEBAR ==================== --}}
@@ -21,7 +37,9 @@
         <div class="px-5 py-5 border-b border-gray-100">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
@@ -31,26 +49,26 @@
             <p class="text-xs font-semibold text-gray-400 px-3 mb-2 uppercase tracking-wider">Menu Utama</p>
 
             <a href="{{ route('pengguna.dashboard') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 nav-active">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 nav-active">
                 Dashboard
             </a>
             <a href="{{ route('keutamaan.borang') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
                 Cadangan Baru
             </a>
             <a href="{{ route('sejarah.index') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
                 Sejarah Cadangan
             </a>
             <a href="{{ route('ulasan.index') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
                 Ulasan Saya
             </a>
 
             <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
 
             <a href="{{ route('profil.index') }}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">
                 Profil Saya
             </a>
 
@@ -90,9 +108,6 @@
                     {{ now()->locale('ms')->isoFormat('dddd, D MMMM YYYY') }}
                 </p>
             </div>
-            <div class="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold uppercase">
-                {{ strtoupper(substr(optional(auth()->user())->nama ?? 'TT', 0, 2)) }}
-            </div>
         </div>
 
         {{-- ==================== KAD STATISTIK ==================== --}}
@@ -126,26 +141,26 @@
                 </div>
 
                 @forelse($cadanganTerkini ?? [] as $cadangan)
-                    <div class="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
-                        <div>
-                            <p class="text-sm font-semibold text-gray-700">{{ $cadangan->peranti->nama ?? '-' }}</p>
-                            <p class="text-xs text-gray-400">
-                                {{ $cadangan->peranti->kategori->nama_kategori ?? '-' }} • RM {{ number_format($cadangan->peranti->harga ?? 0, 2) }}
-                            </p>
-                        </div>
-                        <span class="text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
-                            {{ $cadangan->skor_padanan }}%
-                        </span>
+                <div class="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-700">{{ $cadangan->peranti->nama ?? '-' }}</p>
+                        <p class="text-xs text-gray-400">
+                            {{ $cadangan->peranti->kategori->nama_kategori ?? '-' }} • RM {{ number_format($cadangan->peranti->harga ?? 0, 2) }}
+                        </p>
                     </div>
+                    <span class="text-xs font-semibold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
+                        {{ $cadangan->skor_padanan }}%
+                    </span>
+                </div>
                 @empty
-                    <div class="text-center py-8">
-                        <p class="text-sm text-gray-400">Belum ada cadangan lagi.</p>
-                        <p class="text-xs text-gray-300 mt-1">Mulakan dengan isi borang keutamaan</p>
-                    </div>
+                <div class="text-center py-8">
+                    <p class="text-sm text-gray-400">Belum ada cadangan lagi.</p>
+                    <p class="text-xs text-gray-300 mt-1">Mulakan dengan isi borang keutamaan</p>
+                </div>
                 @endforelse
 
                 <a href="{{ route('keutamaan.borang') }}"
-                   class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
+                    class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
                     Dapatkan Cadangan Baru
                 </a>
             </div>
@@ -175,7 +190,7 @@
                         </div>
                     </div>
                     <a href="{{ route('profil.index') }}"
-                       class="mt-4 w-full border border-blue-200 text-blue-600 text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition">
+                        class="mt-4 w-full border border-blue-200 text-blue-600 text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition">
                         Kemaskini Profil
                     </a>
                 </div>
@@ -188,15 +203,15 @@
                     </div>
 
                     @forelse($sejarahTerkini ?? [] as $sejarah)
-                        <div class="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0">
-                            <div>
-                                <p class="text-xs font-semibold text-gray-700">{{ $sejarah->jenis }}</p>
-                                <p class="text-xs text-gray-400">{{ $sejarah->created_at->diffForHumans() }}</p>
-                            </div>
-                            <span class="text-xs bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full font-semibold">Selesai</span>
+                    <div class="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-700">{{ $sejarah->jenis }}</p>
+                            <p class="text-xs text-gray-400">{{ $sejarah->created_at->diffForHumans() }}</p>
                         </div>
+                        <span class="text-xs bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full font-semibold">Selesai</span>
+                    </div>
                     @empty
-                        <p class="text-xs text-gray-400 text-center py-4">Tiada sejarah lagi.</p>
+                    <p class="text-xs text-gray-400 text-center py-4">Tiada sejarah lagi.</p>
                     @endforelse
 
                 </div>
@@ -207,4 +222,5 @@
     </main>
 
 </body>
+
 </html>
