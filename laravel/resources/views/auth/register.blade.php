@@ -124,7 +124,7 @@
 
         <p class="text-center text-xs mt-5">
             <a href="{{ route('landing') }}" class="text-white/70 hover:text-white hover:underline transition">
-                ← Kembali ke laman utama
+                 Kembali ke laman utama
             </a>
         </p>
 
