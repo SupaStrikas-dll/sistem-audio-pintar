@@ -94,9 +94,15 @@
             <div class="grid grid-cols-3 gap-3">
                 @foreach($pilihan->cadangan->sortByDesc('skor_padanan')->take(3) as $c)
                 <div class="bg-gray-50 border border-gray-100 rounded-xl p-3 flex items-center gap-3">
+                    @if($c->peranti->imej)
+                    <img src="{{ asset($c->peranti->imej) }}"
+                        alt="{{ $c->peranti->nama }}"
+                        class="w-10 h-10 rounded-lg object-cover flex-shrink-0">
+                    @else
                     <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-lg flex-shrink-0">
-                        {{ $c->peranti->kategori->nama_kategori === 'Speaker' ? '🔊' : ($c->peranti->kategori->nama_kategori === 'Mikrofon' ? '🎤' : '🎧') }}
+                        {{ ($c->peranti->kategori->nama_kategori ?? '') === 'Speaker' ? '🔊' : (($c->peranti->kategori->nama_kategori ?? '') === 'Mikrofon' ? '🎤' : '🎧') }}
                     </div>
+                    @endif
                     <div class="flex-1 min-w-0">
                         <p class="text-xs font-semibold text-gray-700 truncate">{{ $c->peranti->nama ?? '-' }}</p>
                         <p class="text-xs text-gray-400">RM {{ number_format($c->peranti->harga ?? 0, 0) }}</p>
