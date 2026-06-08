@@ -64,8 +64,6 @@
                 @csrf
                 <button type="submit" class="w-full text-left nav-item" style="color:#f87171;">Log Keluar</button>
             </form>
-
-
         </nav>
         <div class="px-4 py-4 border-t border-white/10">
             <div class="flex items-center gap-3">

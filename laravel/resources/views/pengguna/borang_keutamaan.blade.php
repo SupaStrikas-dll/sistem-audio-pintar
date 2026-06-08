@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .option-card { border: 1.5px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.15s; }
-        .option-card:hover { border-color: #4f6ef7; background: #f8f9ff; }
-        .option-card.selected { border-color: #4f6ef7; background: #eef0fe; color: #4f6ef7; font-weight: 600; }
-        .step-content { display: none; }
-        .step-content.active { display: block; }
-        input[type=range] { accent-color: #4f6ef7; }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .option-card {
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.15s;
+        }
+
+        .option-card:hover {
+            border-color: #4f6ef7;
+            background: #f8f9ff;
+        }
+
+        .option-card.selected {
+            border-color: #4f6ef7;
+            background: #eef0fe;
+            color: #4f6ef7;
+            font-weight: 600;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        input[type=range] {
+            accent-color: #4f6ef7;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     {{-- ==================== SIDEBAR ==================== --}}
@@ -23,7 +56,9 @@
         <div class="px-5 py-5 border-b border-gray-100">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold">Audio<span class="text-blue-600">Pintar</span></span>
             </div>
@@ -36,7 +71,8 @@
             <a href="{{ route('ulasan.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Ulasan Saya</a>
             <p class="text-xs font-semibold text-gray-400 px-3 mt-5 mb-2 uppercase tracking-wider">Akaun</p>
             <a href="{{ route('profil.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 mb-1 transition">Profil Saya</a>
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}"
+                onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
                 @csrf
                 <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">Log Keluar</button>
             </form>
@@ -53,6 +89,16 @@
             </div>
         </div>
     </aside>
+
+    {{-- Popup Amaran --}}
+    <div id="popup-amaran" class="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div class="bg-red-50 border border-red-200 text-red-600 text-sm font-semibold px-6 py-3.5 rounded-2xl shadow-lg flex items-center gap-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z" />
+            </svg>
+            <span id="popup-mesej"></span>
+        </div>
+    </div>
 
     {{-- ==================== KANDUNGAN UTAMA ==================== --}}
     <main class="ml-56 flex-1 p-6 flex items-center justify-center">
@@ -230,18 +276,18 @@
                         <button type="button" onclick="prevStep()"
                             id="prevBtn"
                             class="text-sm font-semibold text-gray-400 border border-gray-200 px-5 py-2.5 rounded-xl hover:bg-gray-50 transition invisible">
-                             Sebelum
+                            Sebelum
                         </button>
                         <span id="stepCount" class="text-xs text-gray-400">Langkah 1 / 3</span>
                         <button type="button" onclick="nextStep()"
                             id="nextBtn"
                             class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition">
-                            Seterusnya 
+                            Seterusnya
                         </button>
                         <button type="submit"
                             id="submitBtn"
                             class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition hidden">
-                             Dapatkan Cadangan
+                            Dapatkan Cadangan
                         </button>
                     </div>
 
@@ -322,7 +368,43 @@
         document.getElementById('submitBtn').classList.toggle('hidden', currentStep !== totalSteps);
     }
 
+    // Mesej popup
+    function tunjukPopup(mesej) {
+        const popup = document.getElementById('popup-amaran');
+        const popupMesej = document.getElementById('popup-mesej');
+        popupMesej.textContent = mesej;
+        popup.classList.remove('hidden');
+        setTimeout(() => popup.classList.add('hidden'), 3000);
+    }
+
+    // Semak pilihan sebelum next
+    function semakPilihan() {
+        if (currentStep === 1) {
+            const terpilih = document.querySelector('input[name="jenis"]:checked');
+            if (!terpilih) {
+                tunjukPopup('Sila pilih jenis peranti audio terlebih dahulu.');
+                return false;
+            }
+        }
+        if (currentStep === 2) {
+            const kegunaan = document.querySelector('input[name="kegunaan"]:checked');
+            if (!kegunaan) {
+                tunjukPopup('Sila pilih kegunaan utama peranti anda.');
+                return false;
+            }
+        }
+        if (currentStep === 3) {
+            const sambungan = document.querySelector('input[name="sambungan"]:checked');
+            if (!sambungan) {
+                tunjukPopup('Sila pilih jenis sambungan peranti anda.');
+                return false;
+            }
+        }
+        return true;
+    }
+
     function nextStep() {
+        if (!semakPilihan()) return;
         if (currentStep < totalSteps) {
             currentStep++;
             updateUI();
@@ -338,4 +420,5 @@
         }
     }
 </script>
+
 </html>

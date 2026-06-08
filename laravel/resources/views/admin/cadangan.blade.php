@@ -34,7 +34,8 @@
             <a href="{{ route('admin.ulasan') }}" class="nav-item">Ulasan</a>
             <a href="{{ route('admin.statistik') }}" class="nav-item">Statistik</a>
             <a href="{{ route('admin.tetapan') }}" class="nav-item">Tetapan</a>
-            <form method="POST" action="{{ route('logout') }}" class="mt-2">
+           <form method="POST" action="{{ route('logout') }}" class="mt-2"
+                onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
                 @csrf
                 <button type="submit" class="w-full text-left nav-item" style="color:#f87171;">Log Keluar</button>
             </form>

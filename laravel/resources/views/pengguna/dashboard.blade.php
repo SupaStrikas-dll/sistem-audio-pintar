@@ -72,12 +72,10 @@
                 Profil Saya
             </a>
 
-            <form method="POST" action="{{ route('logout') }}">
+             <form method="POST" action="{{ route('logout') }}"
+                onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
                 @csrf
-                <button type="submit"
-                    class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">
-                    Log Keluar
-                </button>
+                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-50 transition text-left">Log Keluar</button>
             </form>
         </nav>
 
