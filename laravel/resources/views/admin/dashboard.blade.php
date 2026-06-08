@@ -212,37 +212,8 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Aktiviti Terkini --}}
-                <div class="bg-white border border-gray-100 rounded-2xl p-5">
-                    <h2 class="text-sm font-bold text-gray-700 mb-4">Aktiviti Terkini</h2>
-                    <div class="space-y-3">
-                        <div class="flex gap-3 items-start pb-3 border-b border-gray-50">
-                            <div>
-                                <p class="text-xs font-semibold text-gray-700">Pengguna baru mendaftar</p>
-                                <p class="text-xs text-gray-400">2 minit lalu</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start pb-3 border-b border-gray-50">
-                            <div>
-                                <p class="text-xs font-semibold text-gray-700">Ulasan baru ditambah</p>
-                                <p class="text-xs text-gray-400">15 minit lalu</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-3 items-start">
-                            <div>
-                                <p class="text-xs font-semibold text-gray-700">Cadangan baru dijana</p>
-                                <p class="text-xs text-gray-400">1 jam lalu</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-
     </main>
-
 </body>
-
 </html>
