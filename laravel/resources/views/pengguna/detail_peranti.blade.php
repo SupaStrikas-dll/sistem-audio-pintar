@@ -151,7 +151,8 @@
             <div class="col-span-2 space-y-5">
 
                 {{-- Graf Frekuensi --}}
-                @if(in_array($peranti->kategori->nama_kategori ?? '', ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
+                @php $namaKategori = optional($peranti->kategori)->nama_kategori ?? ''; @endphp
+                @if(in_array($namaKategori, ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
                 <div class="bg-white border border-gray-100 rounded-2xl p-5">
 
                     {{-- Header Graf --}}
@@ -261,9 +262,10 @@
 
 </body>
 
-@if(in_array($peranti->kategori->nama_kategori ?? '', ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
+@php $namaKategori = optional($peranti->kategori)->nama_kategori ?? ''; @endphp
+@if(in_array($namaKategori, ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
 <script>
-    const dataFrekuensi = @json(json_decode($peranti - > data_frekuensi));
+    const dataFrekuensi = @json(json_decode($peranti->data_frekuensi));
     const labelFrekuensi = ['20Hz', '50Hz', '100Hz', '200Hz', '500Hz', '1kHz', '2kHz', '5kHz', '10kHz', '20kHz'];
 
     // Status zon (aktif/tidak)

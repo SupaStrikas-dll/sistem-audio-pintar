@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-        .gradient-hero { background: linear-gradient(135deg, #4f6ef7 0%, #7c3aed 100%); }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(79, 110, 247, 0.12); }
-        .btn-primary { background: #4f6ef7; transition: background 0.2s ease; }
-        .btn-primary:hover { background: #3d5ce3; }
-        html { scroll-behavior: smooth; }
+        .gradient-hero {
+            background: linear-gradient(135deg, #4f6ef7 0%, #7c3aed 100%);
+        }
+
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(79, 110, 247, 0.12);
+        }
+
+        .btn-primary {
+            background: #4f6ef7;
+            transition: background 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #3d5ce3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         /* Hero background image */
         .hero-bg {
@@ -50,12 +72,21 @@
         .scroll-bounce {
             animation: bounce 2s infinite;
         }
+
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
         }
     </style>
 </head>
+
 <body class="bg-[#f8f9ff] text-[#1a1a2e]">
 
     {{-- ==================== NAVIGASI ==================== --}}
@@ -64,7 +95,9 @@
 
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 gradient-hero rounded-xl flex items-center justify-center">
-                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    </svg>
                 </div>
                 <span class="text-base font-bold">Audio<span class="text-[#4f6ef7]">Pintar</span></span>
             </div>
@@ -78,11 +111,11 @@
 
             <div class="flex items-center gap-3">
                 <a href="{{ route('login') }}"
-                   class="text-sm font-semibold text-[#4f6ef7] border border-[#4f6ef7] px-5 py-2 rounded-lg hover:bg-blue-50 transition">
+                    class="text-sm font-semibold text-[#4f6ef7] border border-[#4f6ef7] px-5 py-2 rounded-lg hover:bg-blue-50 transition">
                     Log Masuk
                 </a>
                 <a href="{{ route('daftar') }}"
-                   class="text-sm font-semibold text-white btn-primary px-5 py-2 rounded-lg">
+                    class="text-sm font-semibold text-white btn-primary px-5 py-2 rounded-lg">
                     Daftar Percuma
                 </a>
             </div>
@@ -107,11 +140,11 @@
             {{-- Butang CTA --}}
             <div class="flex items-center justify-center gap-4 flex-wrap">
                 <a href="{{ route('daftar') }}"
-                   class="text-sm font-semibold text-white btn-primary px-7 py-3 rounded-lg">
-                    Mula Sekarang 
+                    class="text-sm font-semibold text-white btn-primary px-7 py-3 rounded-lg">
+                    Mula Sekarang
                 </a>
                 <a href="#cara"
-                   class="text-sm font-semibold text-white border border-white/30 px-7 py-3 rounded-lg hover:bg-white/10 transition">
+                    class="text-sm font-semibold text-white border border-white/30 px-7 py-3 rounded-lg hover:bg-white/10 transition">
                     Ketahui Lebih Lanjut
                 </a>
             </div>
@@ -119,7 +152,7 @@
         </div>
     </section>
 
-    
+
 
     {{-- ==================== CIRI-CIRI ==================== --}}
     <section id="ciri" class="py-20 px-6 bg-[#f8f9ff]">
@@ -205,13 +238,17 @@
 
     {{-- ==================== CTA ==================== --}}
     <section class="px-6 pb-20 pt-10 bg-[#f8f9ff]">
-        <div class="max-w-5xl mx-auto gradient-hero rounded-3xl py-14 px-8 text-center">
-            <h2 class="text-2xl font-bold text-white mb-3">Sedia Untuk Mula?</h2>
-            <p class="text-sm text-white/80 mb-8">Daftar sekarang secara percuma dan dapatkan cadangan peranti audio terbaik untuk anda.</p>
-            <a href="{{ route('daftar') }}"
-               class="inline-block bg-white text-[#4f6ef7] text-sm font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition">
-                Daftar Percuma 
-            </a>
+        <div class="max-w-5xl mx-auto rounded-3xl py-14 px-8 text-center relative overflow-hidden"
+            style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&q=80'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 rounded-3xl" style="background: rgba(30, 20, 80, 0.75);"></div>
+            <div class="relative z-10">
+                <h2 class="text-2xl font-bold text-white mb-3">Sedia Untuk Mula?</h2>
+                <p class="text-sm text-white/80 mb-8">Daftar sekarang secara percuma dan dapatkan cadangan peranti audio terbaik untuk anda.</p>
+                <a href="{{ route('daftar') }}"
+                    class="inline-block bg-white text-[#4f6ef7] text-sm font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition">
+                    Daftar Percuma 
+                </a>
+            </div>
         </div>
     </section>
 
@@ -221,4 +258,5 @@
     </footer>
 
 </body>
+
 </html>
