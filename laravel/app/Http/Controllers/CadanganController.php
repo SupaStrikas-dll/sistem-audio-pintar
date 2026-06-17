@@ -97,6 +97,9 @@ class CadanganController extends Controller
         } elseif ($peranti->harga <= ($pilihan->bajet * 1.2)) {
             // Lebih sedikit dari bajet (dalam 20%) — dapat separuh markah
             $skor += 15;
+        } else {
+            // Harga jauh melebihi bajet (lebih 20%) — singkirkan terus
+            return 0;
         }
 
         // ---- 3. KEGUNAAN (20 mata) ----

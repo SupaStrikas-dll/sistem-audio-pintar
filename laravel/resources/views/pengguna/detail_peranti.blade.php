@@ -268,7 +268,7 @@
 @php $namaKategori = optional($peranti->kategori)->nama_kategori ?? ''; @endphp
 @if(in_array($namaKategori, ['Fon Telinga', 'Earphone']) && $peranti->data_frekuensi)
 <script>
-    const dataFrekuensi = @json(json_decode($peranti - > data_frekuensi));
+    const dataFrekuensi = @json(json_decode($peranti->data_frekuensi));
     const labelFrekuensi = ['20Hz', '50Hz', '100Hz', '200Hz', '500Hz', '1kHz', '2kHz', '5kHz', '10kHz', '20kHz'];
 
     // Status zon (aktif/tidak)

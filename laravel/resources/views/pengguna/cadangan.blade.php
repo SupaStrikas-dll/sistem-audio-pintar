@@ -183,7 +183,6 @@
         @else
         {{-- Tiada Cadangan --}}
         <div class="bg-white border border-gray-100 rounded-2xl p-16 text-center">
-            <p class="text-4xl mb-4">😔</p>
             <h2 class="text-base font-bold text-gray-700 mb-2">Tiada cadangan dijumpai</h2>
             <p class="text-sm text-gray-400 mb-5">Cuba ubah keutamaan anda untuk hasil yang lebih baik</p>
             <a href="{{ route('keutamaan.borang') }}"
