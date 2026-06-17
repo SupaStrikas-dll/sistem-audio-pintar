@@ -46,8 +46,11 @@
         <div class="text-center mb-6">
             <a href="{{ route('landing') }}" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 shadow-lg">
                 <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="4" y1="16" x2="4" y2="20" />
+                        <line x1="9" y1="10" x2="9" y2="20" />
+                        <line x1="14" y1="4" x2="14" y2="20" />
+                        <line x1="19" y1="12" x2="19" y2="20" />
                     </svg>
                 </div>
                 <span class="text-base font-bold text-white">Audio<span class="text-blue-400">Pintar</span></span>

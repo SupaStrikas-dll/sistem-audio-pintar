@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $userId = auth()->id();
 
-        $jumlahCadangan = App\Models\Cadangan::whereHas('pilihan', function($q) use ($userId) {
+        $jumlahCadangan = App\Models\Cadangan::whereHas('pilihan', function ($q) use ($userId) {
             $q->where('id_pengguna', $userId);
         })->count();
 
@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
         $jumlahPerantiDilihat = App\Models\PilihanPengguna::where('id_pengguna', $userId)->count();
 
         $cadanganTerkini = App\Models\Cadangan::with('peranti.kategori')
-            ->whereHas('pilihan', function($q) use ($userId) {
+            ->whereHas('pilihan', function ($q) use ($userId) {
                 $q->where('id_pengguna', $userId);
             })
             ->orderBy('skor_padanan', 'desc')
@@ -192,7 +192,6 @@ Route::middleware('auth')->group(function () {
             ->findOrFail($id);
         return view('pengguna.detail_peranti', compact('peranti'));
     })->name('peranti.detail');
-
 });
 
 // =====================================================
@@ -207,12 +206,26 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         $jumlahCadangan = App\Models\Cadangan::count();
         $jumlahUlasan   = App\Models\Ulasan::count();
         $perantiTerkini = App\Models\PerantiAudio::with('kategori')->latest()->take(5)->get();
+
+        // Kira peratusan carian setiap kategori
+        $jumlahCarian = App\Models\PilihanPengguna::count();
+        $kategoriList = App\Models\Kategori::all();
+        $kategoriPopular = $kategoriList->map(function ($k) use ($jumlahCarian) {
+            $bilangan = App\Models\PilihanPengguna::where('jenis', $k->nama_kategori)->count();
+            $peratus = $jumlahCarian > 0 ? round(($bilangan / $jumlahCarian) * 100) : 0;
+            return [
+                'nama' => $k->nama_kategori,
+                'peratus' => $peratus,
+            ];
+        })->sortByDesc('peratus')->values();
+
         return view('admin.dashboard', compact(
             'jumlahPengguna',
             'jumlahPeranti',
             'jumlahCadangan',
             'jumlahUlasan',
-            'perantiTerkini'
+            'perantiTerkini',
+            'kategoriPopular'
         ));
     })->name('admin.dashboard');
 
@@ -316,5 +329,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         ]);
         return back()->with('berjaya', 'Kata laluan berjaya ditukar!');
     })->name('admin.tetapan.kataLaluan');
-
 });

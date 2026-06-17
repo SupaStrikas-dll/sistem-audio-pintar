@@ -95,8 +95,11 @@
 
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 gradient-hero rounded-xl flex items-center justify-center">
-                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                        <path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z" />
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="4" y1="16" x2="4" y2="20" />
+                        <line x1="9" y1="10" x2="9" y2="20" />
+                        <line x1="14" y1="4" x2="14" y2="20" />
+                        <line x1="19" y1="12" x2="19" y2="20" />
                     </svg>
                 </div>
                 <span class="text-base font-bold">Audio<span class="text-[#4f6ef7]">Pintar</span></span>
@@ -246,7 +249,7 @@
                 <p class="text-sm text-white/80 mb-8">Daftar sekarang secara percuma dan dapatkan cadangan peranti audio terbaik untuk anda.</p>
                 <a href="{{ route('daftar') }}"
                     class="inline-block bg-white text-[#4f6ef7] text-sm font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition">
-                    Daftar Percuma 
+                    Daftar Percuma
                 </a>
             </div>
         </div>

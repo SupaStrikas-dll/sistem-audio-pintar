@@ -240,32 +240,7 @@
                                 </label>
                             </div>
 
-                            <label class="block text-sm font-semibold text-gray-600 mb-3">Jenama Pilihan <span class="text-gray-300 font-normal">(Pilihan)</span></label>
-                            <div class="grid grid-cols-3 gap-3">
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="Sony" class="hidden">
-                                    <span class="text-sm">Sony</span>
-                                </label>
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="JBL" class="hidden">
-                                    <span class="text-sm">JBL</span>
-                                </label>
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="Anker" class="hidden">
-                                    <span class="text-sm">Anker</span>
-                                </label>
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="Bose" class="hidden">
-                                    <span class="text-sm">Bose</span>
-                                </label>
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="Samsung" class="hidden">
-                                    <span class="text-sm">Samsung</span>
-                                </label>
-                                <label class="option-card justify-center">
-                                    <input type="radio" name="jenama" value="Tiada" class="hidden">
-                                    <span class="text-sm">Tiada Pilihan</span>
-                                </label>
+                            
                             </div>
                         </div>
 

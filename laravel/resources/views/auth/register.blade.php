@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
         /* Background gambar IEM lutsinar (clear resin) daripada Unsplash */
         .register-bg {
@@ -34,6 +37,7 @@
         }
     </style>
 </head>
+
 <body class="register-bg min-h-screen flex items-center justify-center px-4 py-10">
 
     <div class="w-full max-w-md register-content">
@@ -42,7 +46,12 @@
         <div class="text-center mb-6">
             <a href="{{ route('landing') }}" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 shadow-lg">
                 <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="4" y1="16" x2="4" y2="20" />
+                        <line x1="9" y1="10" x2="9" y2="20" />
+                        <line x1="14" y1="4" x2="14" y2="20" />
+                        <line x1="19" y1="12" x2="19" y2="20" />
+                    </svg>
                 </div>
                 <span class="text-base font-bold text-white">Audio<span class="text-blue-400">Pintar</span></span>
             </a>
@@ -58,9 +67,9 @@
 
             {{-- Mesej Ralat --}}
             @if($errors->any())
-                <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
-                    ⚠️ {{ $errors->first() }}
-                </div>
+            <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl mb-5">
+                ⚠️ {{ $errors->first() }}
+            </div>
             @endif
 
             {{-- Borang --}}
@@ -74,8 +83,7 @@
                         name="nama"
                         value="{{ old('nama') }}"
                         placeholder="Masukkan nama penuh anda"
-                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition"
-                    >
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition">
                 </div>
 
                 <div class="mb-4">
@@ -85,8 +93,7 @@
                         name="emel"
                         value="{{ old('emel') }}"
                         placeholder="contoh@emel.com"
-                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition"
-                    >
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition">
                 </div>
 
                 <div class="mb-4">
@@ -95,8 +102,7 @@
                         type="password"
                         name="kata_laluan"
                         placeholder="Minimum 6 aksara"
-                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition"
-                    >
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition">
                 </div>
 
                 <div class="mb-6">
@@ -105,13 +111,12 @@
                         type="password"
                         name="kata_laluan_confirmation"
                         placeholder="Ulang kata laluan anda"
-                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition"
-                    >
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition">
                 </div>
 
                 <button type="submit"
                     class="w-full bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-semibold py-3 rounded-xl text-sm transition shadow-md shadow-purple-600/20">
-                    Daftar Sekarang 
+                    Daftar Sekarang
                 </button>
             </form>
 
@@ -124,11 +129,12 @@
 
         <p class="text-center text-xs mt-5">
             <a href="{{ route('landing') }}" class="text-white/70 hover:text-white hover:underline transition">
-                 Kembali ke laman utama
+                Kembali ke laman utama
             </a>
         </p>
 
     </div>
 
 </body>
+
 </html>

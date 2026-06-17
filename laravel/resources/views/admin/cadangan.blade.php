@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,46 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 2px; transition: all 0.15s; }
-        .nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
-        .nav-active { background: #4f6ef7 !important; color: white !important; }
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 2px;
+            transition: all 0.15s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav-active {
+            background: #4f6ef7 !important;
+            color: white !important;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex">
 
     <aside class="w-52 bg-[#1e1b4b] min-h-screen flex flex-col fixed left-0 top-0 z-40">
         <div class="px-4 py-5 border-b border-white/10">
             <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 bg-[#4f6ef7] rounded-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7A7 7 0 0 1 5 12 7 7 0 0 1 12 5zm0 2a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3z"/></svg>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="4" y1="16" x2="4" y2="20" />
+                        <line x1="9" y1="10" x2="9" y2="20" />
+                        <line x1="14" y1="4" x2="14" y2="20" />
+                        <line x1="19" y1="12" x2="19" y2="20" />
+                    </svg>
                 </div>
                 <span class="text-sm font-bold text-white">Audio<span class="text-indigo-400">Pintar</span></span>
             </div>
@@ -34,7 +62,7 @@
             <a href="{{ route('admin.ulasan') }}" class="nav-item">Ulasan</a>
             <a href="{{ route('admin.statistik') }}" class="nav-item">Statistik</a>
             <a href="{{ route('admin.tetapan') }}" class="nav-item">Tetapan</a>
-           <form method="POST" action="{{ route('logout') }}" class="mt-2"
+            <form method="POST" action="{{ route('logout') }}" class="mt-2"
                 onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
                 @csrf
                 <button type="submit" class="w-full text-left nav-item" style="color:#f87171;">Log Keluar</button>
@@ -73,32 +101,32 @@
                 </thead>
                 <tbody>
                     @forelse($cadangan ?? [] as $index => $c)
-                        <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
-                            <td class="px-5 py-3.5 text-sm text-gray-400">{{ $index + 1 }}</td>
-                            <td class="px-5 py-3.5 text-sm font-semibold text-gray-700">
-                                {{ $c->pilihan->pengguna->nama ?? '-' }}
-                            </td>
-                            <td class="px-5 py-3.5 text-sm text-gray-700">
-                                {{ $c->peranti->nama ?? '-' }}
-                            </td>
-                            <td class="px-5 py-3.5">
-                                <span class="text-xs font-semibold bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">
-                                    {{ $c->pilihan->jenis ?? '-' }}
-                                </span>
-                            </td>
-                            <td class="px-5 py-3.5">
-                                <span class="text-sm font-bold {{ $c->skor_padanan >= 80 ? 'text-green-600' : 'text-blue-600' }}">
-                                    {{ $c->skor_padanan }}%
-                                </span>
-                            </td>
-                            <td class="px-5 py-3.5 text-sm text-gray-500">
-                                {{ \Carbon\Carbon::parse($c->created_at)->format('d M Y') }}
-                            </td>
-                        </tr>
+                    <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
+                        <td class="px-5 py-3.5 text-sm text-gray-400">{{ $index + 1 }}</td>
+                        <td class="px-5 py-3.5 text-sm font-semibold text-gray-700">
+                            {{ $c->pilihan->pengguna->nama ?? '-' }}
+                        </td>
+                        <td class="px-5 py-3.5 text-sm text-gray-700">
+                            {{ $c->peranti->nama ?? '-' }}
+                        </td>
+                        <td class="px-5 py-3.5">
+                            <span class="text-xs font-semibold bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">
+                                {{ $c->pilihan->jenis ?? '-' }}
+                            </span>
+                        </td>
+                        <td class="px-5 py-3.5">
+                            <span class="text-sm font-bold {{ $c->skor_padanan >= 80 ? 'text-green-600' : 'text-blue-600' }}">
+                                {{ $c->skor_padanan }}%
+                            </span>
+                        </td>
+                        <td class="px-5 py-3.5 text-sm text-gray-500">
+                            {{ \Carbon\Carbon::parse($c->created_at)->format('d M Y') }}
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="6" class="text-center py-12 text-sm text-gray-400">Tiada cadangan dijumpai.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="6" class="text-center py-12 text-sm text-gray-400">Tiada cadangan dijumpai.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -108,4 +136,5 @@
         </div>
     </main>
 </body>
+
 </html>
