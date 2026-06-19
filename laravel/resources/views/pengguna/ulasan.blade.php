@@ -114,7 +114,8 @@
                             data-nama="{{ $peranti->nama }}"
                             data-jenama="{{ $peranti->jenama }}"
                             data-kategori="{{ $peranti->kategori->nama_kategori ?? '-' }}"
-                            data-harga="{{ number_format($peranti->harga, 2) }}">
+                            data-harga="{{ number_format($peranti->harga, 2) }}"
+                            data-imej="{{ $peranti->imej ? asset($peranti->imej) : '' }}">
                             {{ $peranti->nama }} — RM {{ number_format($peranti->harga, 2) }}
                         </option>
                         @endforeach
@@ -123,7 +124,10 @@
 
                 {{-- Info Peranti Terpilih --}}
                 <div id="perantiInfo" class="hidden mb-4 bg-gray-50 rounded-xl p-4 flex gap-3 items-center border border-gray-100">
-                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl">🎧</div>
+                    <div id="perantiGambarBox" class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl overflow-hidden flex-shrink-0">
+                        <span id="perantiEmoji">🎧</span>
+                        <img id="perantiImg" src="" class="w-full h-full object-cover hidden">
+                    </div>
                     <div>
                         <p id="perantiNama" class="text-sm font-bold text-gray-800"></p>
                         <p id="perantiBrand" class="text-xs text-gray-400"></p>
@@ -269,6 +273,19 @@
             document.getElementById('perantiBrand').textContent = option.dataset.jenama + ' • ' + option.dataset.kategori;
             document.getElementById('perantiHarga').textContent = 'RM ' + option.dataset.harga;
             document.getElementById('hiddenPeranti').value = select.value;
+
+            // Papar gambar sebenar atau emoji fallback
+            const imgEl = document.getElementById('perantiImg');
+            const emojiEl = document.getElementById('perantiEmoji');
+            if (option.dataset.imej) {
+                imgEl.src = option.dataset.imej;
+                imgEl.classList.remove('hidden');
+                emojiEl.classList.add('hidden');
+            } else {
+                imgEl.classList.add('hidden');
+                emojiEl.classList.remove('hidden');
+            }
+
             info.classList.remove('hidden');
         } else {
             info.classList.add('hidden');
