@@ -11,21 +11,28 @@ use Illuminate\Support\Facades\Auth;
 class CadanganController extends Controller
 {
     // =====================================================
+    // PAPAR BORANG KEUTAMAAN
+    // =====================================================
+    public function borang()
+    {
+        return view('pengguna.borang_keutamaan');
+    }
+
+    // =====================================================
     // SIMPAN PILIHAN & JANA CADANGAN
     // =====================================================
     public function simpanPilihan(Request $request)
     {
         $request->validate([
-            'jenis'   => 'required|string',
-            'bajet'   => 'required|numeric|min:0',
-            'kegunaan'=> 'required|string',
+            'jenis'    => 'required|string',
+            'bajet'    => 'required|numeric|min:0',
+            'kegunaan' => 'required|string',
         ], [
             'jenis.required'    => 'Sila pilih jenis peranti.',
             'bajet.required'    => 'Sila tetapkan bajet.',
             'kegunaan.required' => 'Sila pilih kegunaan utama.',
         ]);
 
-        // Simpan pilihan pengguna
         $pilihan = PilihanPengguna::create([
             'id_pengguna' => Auth::id(),
             'jenis'       => $request->jenis,
@@ -33,7 +40,6 @@ class CadanganController extends Controller
             'kegunaan'    => $request->kegunaan,
         ]);
 
-        // Jana cadangan berdasarkan pilihan
         $this->janaCadangan($pilihan);
 
         return redirect()->route('cadangan.hasil', $pilihan->id);
@@ -44,12 +50,10 @@ class CadanganController extends Controller
     // =====================================================
     private function janaCadangan(PilihanPengguna $pilihan)
     {
-        // Dapatkan semua peranti yang aktif
         $semuaPeranti = PerantiAudio::with('kategori')
             ->where('status', 1)
             ->get();
 
-        // Padam cadangan lama untuk pilihan ini
         Cadangan::where('id_pilihan', $pilihan->id)->delete();
 
         $cadanganList = [];
@@ -57,7 +61,6 @@ class CadanganController extends Controller
         foreach ($semuaPeranti as $peranti) {
             $skor = $this->kiraSkor($pilihan, $peranti);
 
-            // Hanya simpan kalau skor lebih dari 0
             if ($skor > 0) {
                 $cadanganList[] = [
                     'id_pilihan'   => $pilihan->id,
@@ -69,7 +72,6 @@ class CadanganController extends Controller
             }
         }
 
-        // Simpan semua cadangan sekali gus
         if (!empty($cadanganList)) {
             Cadangan::insert($cadanganList);
         }
@@ -87,7 +89,6 @@ class CadanganController extends Controller
         if (strtolower($pilihan->jenis) === strtolower($namaKategori)) {
             $skor += 40;
         } else {
-            // Kalau jenis tak sepadan langsung, skip peranti ini
             return 0;
         }
 
@@ -95,7 +96,6 @@ class CadanganController extends Controller
         if ($peranti->harga <= $pilihan->bajet) {
             $skor += 30;
         } elseif ($peranti->harga <= ($pilihan->bajet * 1.2)) {
-            // Lebih sedikit dari bajet (dalam 20%) — dapat separuh markah
             $skor += 15;
         } else {
             // Harga jauh melebihi bajet (lebih 20%) — singkirkan terus
@@ -104,10 +104,10 @@ class CadanganController extends Controller
 
         // ---- 3. KEGUNAAN (20 mata) ----
         $pemetaanKegunaan = [
-            'Gaming'  => ['Gaming', 'Hiburan'],
-            'Muzik'   => ['Muzik', 'Hiburan', 'Studio'],
-            'Kerja'   => ['Kerja', 'Mesyuarat', 'Perniagaan'],
-            'Studio'  => ['Studio', 'Rakaman', 'Muzik'],
+            'Gaming' => ['Gaming', 'Hiburan'],
+            'Muzik'  => ['Muzik', 'Hiburan', 'Studio'],
+            'Kerja'  => ['Kerja', 'Mesyuarat', 'Perniagaan'],
+            'Studio' => ['Studio', 'Rakaman', 'Muzik'],
         ];
 
         $kegunaanBerkaitan = $pemetaanKegunaan[$pilihan->kegunaan] ?? [$pilihan->kegunaan];
@@ -120,12 +120,11 @@ class CadanganController extends Controller
             }
         }
 
-        // Kalau penerangan tiada maklumat kegunaan, bagi markah separuh
         if ($skor < 60) {
             $skor += 10;
         }
 
-        return min($skor, 100); // Pastikan tak melebihi 100
+        return min($skor, 100);
     }
 
     // =====================================================

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ms">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.55);
-            margin-bottom: 2px;
-            transition: all 0.15s;
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .nav-active {
-            background: #4f6ef7 !important;
-            color: white !important;
-        }
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 2px; transition: all 0.15s; }
+        .nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
+        .nav-active { background: #4f6ef7 !important; color: white !important; }
     </style>
 </head>
-
 <body class="bg-gray-50 min-h-screen flex">
 
+    {{-- ==================== SIDEBAR ADMIN ==================== --}}
     <aside class="w-52 bg-[#1e1b4b] min-h-screen flex flex-col fixed left-0 top-0 z-40">
         <div class="px-4 py-5 border-b border-white/10">
             <div class="flex items-center gap-2.5">
@@ -63,7 +41,7 @@
             <a href="{{ route('admin.statistik') }}" class="nav-item nav-active">Statistik</a>
             <a href="{{ route('admin.tetapan') }}" class="nav-item">Tetapan</a>
             <form method="POST" action="{{ route('logout') }}" class="mt-2"
-                onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
+                  onsubmit="return confirm('Adakah anda pasti mahu log keluar?')">
                 @csrf
                 <button type="submit" class="w-full text-left nav-item" style="color:#f87171;">Log Keluar</button>
             </form>
@@ -81,12 +59,22 @@
         </div>
     </aside>
 
+    {{-- ==================== KANDUNGAN UTAMA ==================== --}}
     <main class="ml-52 flex-1 p-6">
-        <div class="mb-6">
-            <h1 class="text-lg font-bold text-gray-800">Statistik Sistem</h1>
-            <p class="text-sm text-gray-400 mt-0.5">Ringkasan keseluruhan penggunaan sistem</p>
+
+        {{-- Topbar --}}
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-lg font-bold text-gray-800">Statistik Sistem</h1>
+                <p class="text-sm text-gray-400 mt-0.5">Ringkasan keseluruhan penggunaan sistem</p>
+            </div>
+            <a href="{{ route('admin.statistik.eksport') }}"
+               class="text-sm font-semibold bg-[#4f6ef7] text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition flex items-center gap-2">
+                 Eksport Laporan
+            </a>
         </div>
 
+        {{-- Kad Statistik --}}
         <div class="grid grid-cols-4 gap-4 mb-6">
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
                 <p class="text-xs font-semibold text-gray-400 mb-3">Jumlah Pengguna</p>
@@ -111,43 +99,45 @@
         </div>
 
         <div class="grid grid-cols-2 gap-5">
+
+            {{-- Peranti Paling Popular --}}
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
                 <h2 class="text-sm font-bold text-gray-700 mb-4">Peranti Paling Popular</h2>
                 @forelse($perantiPopular ?? [] as $p)
-                <div class="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
-                    <div>
-                        <p class="text-sm font-semibold text-gray-700">{{ $p->nama }}</p>
-                        <p class="text-xs text-gray-400">{{ $p->jenama }}</p>
+                    <div class="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-700">{{ $p->nama }}</p>
+                            <p class="text-xs text-gray-400">{{ $p->jenama }}</p>
+                        </div>
+                        <span class="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
+                            {{ $p->jumlah_cadangan }} cadangan
+                        </span>
                     </div>
-                    <span class="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
-                        {{ $p->jumlah_cadangan }} cadangan
-                    </span>
-                </div>
                 @empty
-                <p class="text-sm text-gray-400 text-center py-6">Tiada data lagi.</p>
+                    <p class="text-sm text-gray-400 text-center py-6">Tiada data lagi.</p>
                 @endforelse
             </div>
 
+            {{-- Kategori Paling Dicari (data sebenar) --}}
             <div class="bg-white border border-gray-100 rounded-2xl p-5">
                 <h2 class="text-sm font-bold text-gray-700 mb-4">Kategori Paling Dicari</h2>
                 @forelse($kategoriPopular ?? [] as $k)
-                <div class="mb-4">
-                    <div class="flex justify-between text-xs mb-1.5">
-                        <span class="text-gray-500">{{ $k->nama_kategori }}</span>
-                        <span class="font-semibold text-gray-700">{{ $k->jumlah }} carian</span>
-                    </div>
-                    <div class="bg-gray-100 rounded-full h-2">
-                        <div class="bg-blue-500 h-2 rounded-full"
-                            style="width: {{ $k->jumlah > 0 ? min(($k->jumlah / max($kategoriPopular->max('jumlah'), 1)) * 100, 100) : 0 }}%">
+                    <div class="mb-4">
+                        <div class="flex justify-between text-xs mb-1.5">
+                            <span class="text-gray-500">{{ $k['nama'] }}</span>
+                            <span class="font-semibold text-gray-700">{{ $k['peratus'] }}%</span>
+                        </div>
+                        <div class="bg-gray-100 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: {{ $k['peratus'] }}%"></div>
                         </div>
                     </div>
-                </div>
                 @empty
-                <p class="text-sm text-gray-400 text-center py-6">Tiada data lagi.</p>
+                    <p class="text-sm text-gray-400 text-center py-6">Tiada data carian lagi.</p>
                 @endforelse
             </div>
+
         </div>
     </main>
-</body>
 
+</body>
 </html>

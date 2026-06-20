@@ -19,7 +19,7 @@ class PerantiController extends Controller
         if ($request->cari) {
             $query->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->cari . '%')
-                    ->orWhere('jenama', 'like', '%' . $request->cari . '%');
+                  ->orWhere('jenama', 'like', '%' . $request->cari . '%');
             });
         }
 
@@ -71,17 +71,14 @@ class PerantiController extends Controller
 
         $data = $request->only(['nama', 'jenama', 'id_kategori', 'harga', 'penerangan', 'status']);
 
-        // Upload imej
         if ($request->hasFile('imej')) {
             $namaFail = time() . '_' . $request->file('imej')->getClientOriginalName();
             $request->file('imej')->move(public_path('images/peranti'), $namaFail);
             $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
-        // Simpan julat frekuensi
         $data['julat_frekuensi'] = $request->julat_frekuensi;
 
-        // Baca nilai dB terus dari input individu freq_0 hingga freq_9
         $nilaiFreq = [];
         for ($i = 0; $i < 10; $i++) {
             $nilai = $request->input('freq_' . $i);
@@ -131,10 +128,9 @@ class PerantiController extends Controller
             'imej.image'           => 'Fail mesti berformat imej.',
             'imej.max'             => 'Saiz imej maksimum 2MB.',
         ]);
-        
+
         $data = $request->only(['nama', 'jenama', 'id_kategori', 'harga', 'penerangan', 'status']);
 
-        // Upload imej baru
         if ($request->hasFile('imej')) {
             if ($peranti->imej && file_exists(public_path($peranti->imej))) {
                 unlink(public_path($peranti->imej));
@@ -144,10 +140,8 @@ class PerantiController extends Controller
             $data['imej'] = 'images/peranti/' . $namaFail;
         }
 
-        // Kemaskini julat frekuensi
         $data['julat_frekuensi'] = $request->julat_frekuensi;
 
-        // Baca nilai dB terus dari input individu freq_0 hingga freq_9
         $nilaiFreq = [];
         for ($i = 0; $i < 10; $i++) {
             $nilai = $request->input('freq_' . $i);
@@ -178,5 +172,63 @@ class PerantiController extends Controller
         $peranti->delete();
 
         return redirect()->route('admin.peranti')->with('berjaya', 'Peranti audio berjaya dipadam!');
+    }
+
+    // =====================================================
+    // EKSPORT SENARAI PERANTI (CSV — boleh buka terus dalam Excel)
+    // =====================================================
+    public function export(Request $request)
+    {
+        $query = PerantiAudio::with('kategori');
+
+        if ($request->kategori) {
+            $query->whereHas('kategori', function ($q) use ($request) {
+                $q->where('nama_kategori', $request->kategori);
+            });
+        }
+
+        $peranti = $query->latest()->get();
+
+        $namaFail = 'senarai_peranti_' . now()->format('Ymd_His') . '.csv';
+
+        $headers = [
+            'Content-Type'        => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="' . $namaFail . '"',
+        ];
+
+        $callback = function () use ($peranti) {
+            $file = fopen('php://output', 'w');
+
+            // BOM supaya Excel papar aksara dengan betul
+            fwrite($file, "\xEF\xBB\xBF");
+
+            fputcsv($file, [
+                'Nama Peranti',
+                'Jenama',
+                'Kategori',
+                'Harga (RM)',
+                'Julat Frekuensi',
+                'Skor Purata',
+                'Status',
+                'Tarikh Ditambah',
+            ]);
+
+            foreach ($peranti as $p) {
+                fputcsv($file, [
+                    $p->nama,
+                    $p->jenama,
+                    $p->kategori->nama_kategori ?? '-',
+                    number_format($p->harga, 2),
+                    $p->julat_frekuensi ?? '-',
+                    number_format($p->skor_purata ?? 0, 2),
+                    $p->status ? 'Aktif' : 'Tidak Aktif',
+                    $p->created_at->format('d/m/Y'),
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }
